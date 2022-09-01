@@ -1,0 +1,32 @@
+body{
+    background-color: black;
+    background-image: url("./images/back.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px 0 8px 0;
+}
+.center-text{
+    text-align: center;
+    color: lightgray;
+}
+.players-shower{
+    border: burlywood 3px;
+    border-radius: 4px;
+    background-color: white;
+    display: inline-flex;
+    padding: 3px;
+    margin-right: auto;
+    justify-content: center;
+}
+.player-icon{
+    display: inherit;
+    max-height: 20px;
+}
+h2 {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 2px black;
+    margin: 1rem 0;
+}
