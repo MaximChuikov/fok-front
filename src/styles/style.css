@@ -1,8 +1,8 @@
 body{
     background-color: black;
-    background-image: url("./images/back.jpg");
+    background-image: url("./images/backgr.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     padding: 20px 0 8px 0;
@@ -14,7 +14,8 @@ body{
 .players-shower{
     border: burlywood 3px;
     border-radius: 4px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
     display: inline-flex;
     padding: 3px;
     margin-right: auto;

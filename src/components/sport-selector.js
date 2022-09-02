@@ -1,34 +1,39 @@
 import {Card, CardImg, Col, Container, Image, Row} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
+import '../styles/style.css'
 
 const rawInfo = [
     {
         header: 'Футбол',
         players: 22,
-        text: 'ФЫГРВ рывфрв фыгврфыгрв фывл',
-        image: require('../styles/images/football.png')},
+        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt praesentium non odit nostrum ut impedit internos.',
+        image: require('../styles/images/football.png')
+    },
     {
         header: 'Баскетбол',
         players: 20,
-        text: 'выфдлво шофывоыфшв дыфвдл',
-        image: require('../styles/images/basketball.png')},
+        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt ',
+        image: require('../styles/images/basketball.png')
+    },
     {
         header: 'Волейбол',
         players: 16,
-        text: 'ФЫВОо фывоДдлыв ТФЫДВтЛДЫТВЫФВ ывффывфв',
-        image: require('../styles/images/football.png')},
+        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt praesentium non odit nostrum ut ',
+        image: require('../styles/images/football.png')
+    },
     {
         header: 'Гандбол',
         players: 18,
-        text: 'ДЛФЫОВоыв бжфЫЖВЛФЫЖвл ждбФЫЛВЖыфдвлжд лфыжбвфыжжфвыл',
-        image: require('../styles/images/basketball.png')},
+        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non',
+        image: require('../styles/images/basketball.png')
+    },
 ]
 const playerIcon = require('../styles/images/player-icon.png')
 
 function SportSelector() {
     return (
         <div className={'sports-wrapper'}>
-            <h2>Забронируйте зал для понравившиегося вида спорта, либо место в тренажерном
+            <h2>Забронируйте зал для понравившегося вида спорта, либо место в тренажерном
                 зале</h2>
 
             <Container>
@@ -83,7 +88,7 @@ function SportSelector() {
                                     <h5 className={'m-0'}>{15}</h5>
                                 </div>
                             </Card.ImgOverlay>
-                            <Card.Text>вЫФВло ьВЫОЫФР л олвыфрлорол рфылфол</Card.Text>
+                            <Card.Text>Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt praesentium non odit nostrum ut impedit internos.</Card.Text>
                         </Card>
                     </Col>
                 </Row>
