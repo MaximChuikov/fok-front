@@ -1,17 +1,19 @@
 body{
     background-color: black;
-    background-image: url("./images/backgr.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding: 20px 0 8px 0;
+    /*background-image: url("./images/backgr.jpg");*/
+    /*background-size: cover;*/
+    /*background-position: center center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+    padding: 3vh 2vw 2vh 2vw;
 }
 .center-text{
     text-align: center;
     color: lightgray;
 }
 .players-shower{
+    position: relative;
+    transform: translateX(-8px) translateY(-8px);
     border: burlywood 3px;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.3);
@@ -28,6 +30,6 @@ body{
 h2 {
     text-align: center;
     color: white;
-    text-shadow: 1px 2px black;
+    text-shadow: 1px 1px #0dcaf0;
     margin: 1rem 0;
 }

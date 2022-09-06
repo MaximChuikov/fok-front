@@ -1,36 +1,14 @@
 import {Card, CardImg, Col, Container, Image, Row} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
 import '../styles/style.css'
-
-const rawInfo = [
-    {
-        header: 'Футбол',
-        players: 22,
-        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt praesentium non odit nostrum ut impedit internos.',
-        image: require('../styles/images/football.png')
-    },
-    {
-        header: 'Баскетбол',
-        players: 20,
-        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt ',
-        image: require('../styles/images/basketball.png')
-    },
-    {
-        header: 'Волейбол',
-        players: 16,
-        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt praesentium non odit nostrum ut ',
-        image: require('../styles/images/football.png')
-    },
-    {
-        header: 'Гандбол',
-        players: 18,
-        text: 'Lorem ipsum dolor sit amet. Sed fugit internos non',
-        image: require('../styles/images/basketball.png')
-    },
-]
-const playerIcon = require('../styles/images/player-icon.png')
+import './static-component-data/sport-halls-data'
+import {Routes, Route} from 'react-router-dom'
+import {SportHallViewer} from "./sport-hall-viewer";
+import {useNavigate} from 'react-router-dom'
+import {sportInfo, playerIcon} from './static-component-data/sport-viewer-data'
 
 function SportSelector() {
+    let navigate = useNavigate();
     return (
         <div className={'sports-wrapper'}>
             <h2>Забронируйте зал для понравившегося вида спорта, либо место в тренажерном
@@ -39,9 +17,13 @@ function SportSelector() {
             <Container>
                 <Row style={{alignItems: 'flex-start'}}>
                     {
-                        rawInfo.slice(0, 2).map(el => (
+                        sportInfo.slice(0, 2).map(el => (
                             <Col className={'d-flex align-items-center justify-content-center p-0'}>
-                                <Card className={'w-75'} border={'info'}>
+                                <Card className={'w-75'}
+                                      border={'info'}
+                                      onClick={() => {
+                                          navigate('/observe', {state: {sport: el.sport}})
+                                      }}>
                                     <CardImg src={el.image} style={{backgroundColor: 'darkgrey'}}/>
                                     <CardHeader>{el.header}</CardHeader>
                                     <Card.ImgOverlay>
@@ -59,9 +41,13 @@ function SportSelector() {
                 </Row>
                 <Row className={'mt-4'} style={{alignItems: 'flex-start'}}>
                     {
-                        rawInfo.slice(2, 5).map(el => (
+                        sportInfo.slice(2, 4).map(el => (
                             <Col className={'d-flex align-items-center justify-content-center p-0'}>
-                                <Card className={'w-75'} border={'info'}>
+                                <Card className={'w-75'}
+                                      border={'info'}
+                                      onClick={() => {
+                                          navigate('/observe', {state: {sport: el.sport}})
+                                      }}>
                                     <CardImg src={el.image} style={{backgroundColor: 'darkgrey'}}/>
                                     <CardHeader>{el.header}</CardHeader>
                                     <Card.ImgOverlay>
@@ -78,21 +64,36 @@ function SportSelector() {
                     }
                 </Row>
                 <Row className={'mt-4'} style={{alignItems: 'flex-start'}}>
-                    <Col className={'d-flex align-items-center justify-content-center p-0'}>
-                        <Card className={'w-75'} border={'info'}>
-                            <CardImg src={require('../styles/images/dumbbells.png')} style={{backgroundColor: 'darkgrey'}}/>
-                            <CardHeader>Тренажерный зал</CardHeader>
-                            <Card.ImgOverlay>
-                                <div className={'players-shower'}>
-                                    <Image src={playerIcon} className={'player-icon'}/>
-                                    <h5 className={'m-0'}>{15}</h5>
-                                </div>
-                            </Card.ImgOverlay>
-                            <Card.Text>Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt praesentium non odit nostrum ut impedit internos.</Card.Text>
-                        </Card>
-                    </Col>
+                    {
+                        sportInfo.slice(4, 5).map(el => (
+                            <Col className={'d-flex align-items-center justify-content-center p-0'}>
+                                <Card className={'w-75'}
+                                      border={'info'}
+                                      onClick={() => {
+                                          navigate('/observe', {state: {sport: el.sport}})
+                                      }}>
+                                    <CardImg src={el.image} style={{backgroundColor: 'darkgrey'}}/>
+                                    <CardHeader>{el.header}</CardHeader>
+                                    <Card.ImgOverlay>
+                                        <div className={'players-shower'}>
+                                            <Image src={playerIcon} className={'player-icon'}/>
+                                            <h5 className={'m-0'}>{el.players}</h5>
+                                        </div>
+                                    </Card.ImgOverlay>
+
+                                    <Card.Text>{el.text}</Card.Text>
+                                </Card>
+                            </Col>
+                        ))
+                    }
                 </Row>
             </Container>
+
+            <Routes>
+                <Route path={'/'}/>
+                <Route path={'/observe'} element={<SportHallViewer/>}/>
+            </Routes>
+
         </div>
     );
 }
