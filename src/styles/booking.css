@@ -1,0 +1,36 @@
+.schedule-container {
+    background-color: #bbd6fc;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: auto;
+    padding: 1px;
+    border-radius: 8px;
+}
+
+.time-container {
+    height: 30px;
+    margin: 1px
+}
+h6 {
+    white-space: nowrap;
+}
+
+.inline {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0 2vw;
+}
+
+.in-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.schedule-container::-webkit-scrollbar {
+    display: none;
+}

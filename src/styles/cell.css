@@ -1,0 +1,42 @@
+.isOver {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.cell {
+    display: flex;
+    width: 12vw;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 4px;
+    border: blue solid 1px;
+    user-select: none;
+    cursor: pointer;
+    min-width: 70px;
+    max-width: 100px;
+    height: 30px;
+    margin: 1px 2px;
+}
+
+.selected {
+    background-color: #20c997;
+}
+
+.intended-select[rel=disabled] {
+    background-color: #4d5154;
+    pointer-events: none;
+}
+
+.intended-select[rel=free] {
+    background-color: snow;
+}
+
+.intended-select[rel=event] {
+    background-color: orange;
+}
+
+.intended-select[rel=booked] {
+    background-color: rebeccapurple;
+}

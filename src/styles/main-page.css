@@ -1,0 +1,58 @@
+body {
+    background: linear-gradient(270deg, #bda72e, #b63d19, #132f9f);
+    background-size: 600% 600%;
+
+    animation: AnimationName 30s ease infinite;
+}
+
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.center-text{
+    text-align: center;
+    color: lightgray;
+}
+.players-shower{
+    position: relative;
+    transform: translateX(-8px) translateY(-8px);
+    border: burlywood 3px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
+    display: inline-flex;
+    padding: 3px;
+    margin-right: auto;
+    justify-content: center;
+}
+.player-icon{
+    display: inherit;
+    max-height: 20px;
+}
+h2 {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px #0dcaf0;
+    margin: 1rem 0;
+}
+
+
+.item {
+    width: 100%;
+    align-items: center;
+
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container>div {
+    flex: 0 50%;
+    /*demo*/
+    border: red solid;
+    box-sizing:border-box
+}

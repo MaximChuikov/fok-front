@@ -16,21 +16,21 @@ export const sportInfo = [
         image: require('../../styles/images/basketball-in-basket-4x3.jpg')
     },
     {
-        sport: sports.volleyball,
+        sport: sports.football,
         header: 'Волейбол',
         players: 16,
         text: 'Lorem ipsum dolor sit amet. Sed fugit internos non galisum repellat ab similique voluptatem quo deserunt praesentium non odit nostrum ut ',
         image: require('../../styles/images/volleyball-4x3.jpg')
     },
     {
-        sport: sports.handball,
+        sport: sports.football,
         header: 'Гандбол',
         players: 18,
         text: 'Lorem ipsum dolor sit amet. Sed fugit internos non',
         image: require('../../styles/images/handball.png')
     },
     {
-        sport: sports.gym,
+        sport: sports.basketball,
         header: 'Тренажерный зал',
         players: 15,
         text: 'Lorem ipsum dolor sit amet. Sed fugit internos non',
