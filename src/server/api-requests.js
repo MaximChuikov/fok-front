@@ -1,8 +1,12 @@
 import axios from "axios";
 import bridge from "@vkontakte/vk-bridge";
-import { NativeEventSource, EventSourcePolyfill } from 'event-source-polyfill';
+//import { EventSourcePolyfill, NativeEventSource} from 'event-source-polyfill';
 
-const url = 'http://localhost:8080/api'
+//const url = 'http://localhost:8080/api'
+const url = 'https://фокбулатова.рф/api'
+
+//const EventSource = NativeEventSource || EventSourcePolyfill
+//global.EventSource =  NativeEventSource || EventSourcePolyfill;
 
 async function vk_token() {
     const {access_token} = await bridge.send("VKWebAppGetAuthToken",
@@ -33,20 +37,15 @@ export async function getSchedule(week, variant_id) {
 }
 
 export async function createRequest(variant_id, phone, requests) {
-    return await axios(
-        {
-            method: 'post',
-            url: `${url}/user/rent-request`,
-            headers: {
-                'Authorization': await vk_token()
-            },
-            body: {
-                variant_id: variant_id,
-                phone: phone,
-                requests: requests
-            }
+    return await axios.post(`${url}/user/rent-request`, {
+        variant_id: variant_id,
+        phone: phone,
+        requests: requests
+    }, {
+        headers: {
+            'Authorization': await vk_token()
         }
-    ).then().catch(e => console.log(e))
+    }).then().catch(e => console.log(e))
 }
 
 export async function rentRequests(variant_id) {
@@ -64,9 +63,10 @@ export async function rentRequests(variant_id) {
 
 export async function waitRentChange() {
     console.log('начал прослушку')
-    const eventSource = new EventSourcePolyfill(`${url}/event/change-rent`, {
+    const eventSource = new EventSource(`${url}/event/change-rent`, {
         authorization: await vk_token()
     })
+
     eventSource.onmessage = function (event) {
         const data = JSON.parse(event.data);
         console.log(data, 'конец прослушки')
@@ -76,11 +76,13 @@ export async function waitRentChange() {
 
 export async function waitNewRequest(callback) {
     console.log('начал прослушку')
-    const eventSource = new EventSourcePolyfill(`${url}/event/new-rent-request`,{
-        headers:{
-            authorization: await vk_token()
-        }
-    })
+    const eventSource = new EventSource(`${url}/event/new-rent-request?authorization=${await vk_token()}`)
+    eventSource.onopen = function (event) {
+        console.log('Соединение открыто', event)
+    }
+    eventSource.onclose = function (event) {
+        console.log('Соединение закрыто', event)
+    }
     eventSource.onmessage = function (event) {
         console.log(event.data)
         const data = JSON.parse(event.data);

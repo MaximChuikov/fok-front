@@ -1,7 +1,7 @@
 import {List, Stack} from "@mui/material";
 import {useEffect, useState} from "react";
-import {rentRequests, waitNewRequest} from "../server/api-requests"
-import Request from "../components/request";
+import {rentRequests, waitNewRequest} from "../../server/api-requests"
+import Request from "../../components/request";
 
 function RentRequests() {
     const [requests, setRequests] = useState(null)
@@ -11,9 +11,10 @@ function RentRequests() {
             console.log(data, 'RENT REQUESTS')
             setRequests(data)
             async function new_request() {
-                await waitNewRequest((event) => {
+                await waitNewRequest(async (event) => {
                     console.log(event, 'event data')
-                    setRequests([...requests, data])
+                    const data = await rentRequests(1)
+                    setRequests(data)
                 }).then()
             }
             new_request().then()

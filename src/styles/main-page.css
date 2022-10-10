@@ -1,20 +1,20 @@
 body {
-    background: linear-gradient(270deg, #bda72e, #b63d19, #132f9f);
-    background-size: 600% 600%;
-
-    animation: AnimationName 30s ease infinite;
+    background-color: #545abf;
 }
 
-@keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+body::-webkit-scrollbar {
+    width: 5px;
+}
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px rgba(92, 41, 238, 0.3);
+    border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #9080cc;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
 }
 
-.center-text{
-    text-align: center;
-    color: lightgray;
-}
 .players-shower{
     position: relative;
     transform: translateX(-8px) translateY(-8px);
@@ -31,13 +31,13 @@ body {
     display: inherit;
     max-height: 20px;
 }
-h2 {
+
+.header {
     text-align: center;
     color: white;
-    text-shadow: 1px 1px #0dcaf0;
+    text-shadow: 1px 1px #b099e1;
     margin: 1rem 0;
 }
-
 
 .item {
     width: 100%;
@@ -48,11 +48,27 @@ h2 {
 .container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .container>div {
     flex: 0 50%;
-    /*demo*/
-    border: red solid;
-    box-sizing:border-box
+    box-sizing:border-box;
+    margin-bottom: 2em;
+}
+
+.sport-card {
+    background-color: #3c5eb0;
+}
+
+.sport-header {
+    color: #9b84ff;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.card-text {
+    padding: 2px 5px;
+    color: #c9daf3;
+    font-size: 0.9rem;
 }

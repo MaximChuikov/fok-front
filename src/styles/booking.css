@@ -1,12 +1,12 @@
 .schedule-container {
-    background-color: #bbd6fc;
+    background-color: #C9DAF3FF;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     overflow-x: auto;
     padding: 1px;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .time-container {
@@ -32,5 +32,43 @@ h6 {
 }
 
 .schedule-container::-webkit-scrollbar {
-    display: none;
+    height: 5px;
+}
+
+.schedule-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px rgba(92, 41, 238, 0.3);
+    border-radius: 10px;
+    scroll-padding: 30px;
+}
+
+.schedule-container::-webkit-scrollbar-thumb {
+    background-color: #9080cc;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
+}
+
+.cart-holder{
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.cart-container {
+    overflow-y: scroll;
+}
+
+.cart-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.cart-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px rgba(92, 41, 238, 0.3);
+    border-radius: 10px;
+}
+
+.cart-container::-webkit-scrollbar-thumb {
+    background-color: #9080cc;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
 }

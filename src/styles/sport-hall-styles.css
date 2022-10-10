@@ -1,12 +1,13 @@
 .div-container > * {
-    margin-top: 2vh;
+    margin: 2em 2vw;
 }
 
 .div-container > * > * {
-    margin-top: 0;
+    margin: 0;
 }
+
 ul{
-    color: white;
+    color: black;
 }
 
 .yandex-map {
@@ -21,16 +22,13 @@ iframe {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 0 2vw;
 }
 
 .carousel-wrapper {
     overflow: hidden;
     position: relative;
-    width: 96%;
-    /*padding-top: 56.25%;*/
-    margin: 0 2vw;
-    background-color: rebeccapurple;
+    width: 100%;
+    background-color: transparent;
 }
 
 .images-in-carousel {
@@ -42,7 +40,7 @@ iframe {
 .slide-text {
     color: white;
     text-shadow: 1px 1px 2px black, 2px 2px 4px #34383c;
-    font-size: 0.8em;
+    font-size: 1em;
     margin-bottom: 0 !important;
     line-height: 1em;
 }
