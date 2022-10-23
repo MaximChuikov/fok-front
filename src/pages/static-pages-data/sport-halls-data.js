@@ -1,4 +1,4 @@
-import {sports} from './sports.js'
+import {variants} from "./navigate";
 
 export const sport_hall = {
     text: 'Фотографии физкультурного оздоровительного комплекса',
@@ -27,7 +27,7 @@ export const yandex_map =
 
 export const observe_data = [
     {
-        sport_id: sports.football.id,
+        sport: variants[0].name,
         slides: [
             {
                 text: 'Размер ворот 2 на 3 метра',
@@ -44,7 +44,7 @@ export const observe_data = [
         ]
     },
     {
-        sport_id: sports.basketball,
+        sport: variants[1].name,
         slides: [
             {
                 text: 'Стандартное кольцо 3 метра в высоту, 30 см в диаметре',
@@ -57,7 +57,7 @@ export const observe_data = [
         ]
     },
     {
-        sport_id: sports.gym,
+        sport: variants[2].name,
         slides: [
             {
                 text: 'Беговая дорожка',

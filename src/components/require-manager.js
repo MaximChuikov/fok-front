@@ -1,10 +1,10 @@
-import {Outlet} from 'react-router-dom';
 import {useEffect, useState} from "react";
-import {isManager} from "../server/api-requests";
+import {isManager} from "../server-requests/api-requests";
 import BackButton from "./back-button";
+import Navigation from "../pages/manager/navigation";
 
 const RequireAuth = () => {
-    const [isMan, setIsMan] = useState(false)
+    const [isMan, setIsMan] = useState(null)
 
     useEffect(() => {
         async function fetch() {
@@ -16,13 +16,11 @@ const RequireAuth = () => {
         fetch().then()
     }, [])
 
-    if (isMan) {
-        return <Outlet/>
-    } else {
+    if (isMan === null)
+        return <h1>Проверяю</h1>
+    else if (isMan === true)
+        return <Navigation/>
+    else
         return <h1>Вы не наш менеджер<BackButton/></h1>
-    }
-
-
 }
-
 export default RequireAuth

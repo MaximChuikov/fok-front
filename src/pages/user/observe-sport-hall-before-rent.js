@@ -2,7 +2,7 @@ import '../../styles/main-page.css'
 import {sport_hall, observe_data, yandex_map} from "../static-pages-data/sport-halls-data";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Carousel, Image} from "react-bootstrap";
-import '../../styles/sport-hall-styles.css'
+
 import BackButton from "../../components/back-button";
 import MyCard from "../../components/MyCard";
 
@@ -12,11 +12,13 @@ import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import {Button} from "@mui/material";
 
+import '../../styles/sport-hall-styles.css'
+
 export function ObserveSportHallBeforeRent() {
     const navigate = useNavigate()
-    const location = useLocation()
-    console.log(location)
-    const sport = location.state?.sport?.id ?? 1
+    let location = useLocation()
+    const sport = location?.state?.sport ?? ''
+    console.log(observe_data.find(d => d.sport === sport.name))
 
     function link() {
         navigate('/booking', {state: {sport: sport}})
@@ -41,13 +43,15 @@ export function ObserveSportHallBeforeRent() {
         }
     ]
 
+    if (sport === '')
+        return <div></div>
 
     return (
         <div>
             <BackButton/>
 
             <div className={'div-container'}>
-                <MyCard header={'Что есть в нашем фоке?'}>
+                <MyCard header={'Что есть в нашем ФОКе?'}>
                     <div>
                         {
                             fok_have.map(el => (
@@ -87,16 +91,13 @@ export function ObserveSportHallBeforeRent() {
                         <div>
                             <Carousel>
                                 {
-                                    observe_data.filter(r => r.sport_id === sport).map(el => (
-                                        el.slides.map(slide => (
+                                    observe_data.find(d => d.sport === sport.name).slides.map(slide => (
                                             <Carousel.Item>
                                                 <Image src={slide.image} className={'images-in-carousel'}/>
                                                 <Carousel.Caption>
                                                     <p className={'slide-text'}>{slide.text}</p>
                                                 </Carousel.Caption>
                                             </Carousel.Item>
-                                        ))
-
                                     ))
                                 }
                             </Carousel>

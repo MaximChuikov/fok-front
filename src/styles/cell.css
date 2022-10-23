@@ -39,4 +39,20 @@
 
 .intended-select[rel=booked] {
     background-color: rebeccapurple;
+    pointer-events: none;
+}
+
+.intended-select[rel=filled] {
+    /*background: linear-gradient(to right, #545abf 30%, white 50%);*/
+}
+
+.intended-select[rel=overfilled] {
+    background-color: rebeccapurple;
+    pointer-events: none;
+}
+
+.tooltip-text-container {
+    font-size: 14px;
+    font-family: "Courier New", serif;
+    word-wrap: anywhere;
 }
