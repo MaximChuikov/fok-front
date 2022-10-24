@@ -13,6 +13,7 @@ import RentRequests from "./pages/manager/rent-requests";
 import Events from "./pages/manager/events";
 import NearbyRent from "./pages/manager/nearby-rent";
 import Account from "./pages/user/account";
+import AddTime from "./pages/manager/add-time";
 
 const App = () => {
     let location = useLocation()
@@ -39,7 +40,7 @@ const App = () => {
                 <Route path={'manager'} element={<RequireAuth/>}>
                     <Route path={'requests'} element={<RentRequests/>}/>
                     <Route path={'event'} element={<Events/>}/>
-                    <Route path={'add-time'} element={<h1>add-time</h1>}/>
+                    <Route path={'add-time'} element={<AddTime/>}/>
                     <Route path={'nearby-rent'} element={<NearbyRent/>}/>
                     <Route path={'*'} element={<h1>Не найдено! {location.pathname} <BackButton/></h1>}/>
                 </Route>

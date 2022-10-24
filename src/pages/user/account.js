@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import BackButton from "../../components/back-button";
-import {userRent} from "../../server-requests/api-requests";
+import {userRent, delRent} from "../../server-requests/api-requests";
 import Request from "../../components/request";
 
 const Account = () => {
@@ -38,6 +38,10 @@ const Account = () => {
                                              status={request.status}
                                              booking_times={request.requested_time}
                                              header={'Заявка №' + request.request_id}
+                                             deny={async () => {
+                                                 await delRent(request.request_id)
+                                                 await rent()
+                                             }}
                                     />
                                 ))
                     }

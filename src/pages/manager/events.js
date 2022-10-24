@@ -11,7 +11,7 @@ const Events = () => {
     const [events, setEvents] = useState([])
     const [hall_id, setHall_id] = useState(1)
 
-    const today = useRef(formatDate(new Date()))
+    const today = formatDate(new Date())
     const [dateStart, setDateStart] = useState(formatDate(new Date()))
     const [dateEnd, setDateEnd] = useState(formatDate(new Date()))
 
@@ -90,7 +90,6 @@ const Events = () => {
 
                         <Button variant={'contained'}
                                 onClick={async () => {
-                                    console.log('click')
                                     await addEvent(dateStart.replace("T", " "),
                                         dateEnd.replace("T", " "),
                                         text,

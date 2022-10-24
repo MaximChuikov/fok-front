@@ -92,6 +92,17 @@ export async function denyRequest(request_id) {
     }).catch(e => console.log(e))
 }
 
+export async function delRent(request_id) {
+    await axios.delete(
+        `${url}/user/my-rent?request_id=${request_id}`,
+        {
+            headers: {
+                'Authorization': await vk_token()
+            }
+        }).catch(e => console.log(e))
+}
+
+
 export async function confirmRequest(request_id) {
     await axios.post(`${url}/manager/confirm-request`, {
         request_id: request_id,

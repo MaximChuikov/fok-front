@@ -29,6 +29,7 @@ const Schedule = ({cart, setCart, clickable, variant_id}) => {
 
 
     function cartService(obj) {
+        console.log(obj, 'click')
         if (!clickable)
             return
         if (cart.includes(obj)) {
@@ -38,7 +39,7 @@ const Schedule = ({cart, setCart, clickable, variant_id}) => {
                     date: day.fullDate.toString(),
                     start: session.time_start.toString(),
                     end: session.time_end.toString(),
-                    price: session.price.toString()
+                    price: session?.price?.toString() ?? '-'
                 }))
             )
             if (includes) {
@@ -63,7 +64,7 @@ const Schedule = ({cart, setCart, clickable, variant_id}) => {
 
             <div className={'inline'} style={{marginBottom: '2rem'}}>
                 {
-                    schedule == null ? <h1>Ждемс</h1> : (
+                    schedule == null ? <h1>Загрузка</h1> : (
                         <div className={'schedule-container x-scrolling'}>
                             <div className={'in-column'}>
                                 <h6>Время</h6>

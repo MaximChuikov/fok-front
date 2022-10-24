@@ -8,7 +8,7 @@ const Cell = ({cartRef, date, start, end, price, info, isOver, click}) => {
         date: date.toString(),
         start: start.toString(),
         end: end.toString(),
-        price: price.toString()
+        price: price?.toString() ?? '-'
     })
     let selected = cartRef.includes(myData)
 
@@ -40,7 +40,7 @@ const Cell = ({cartRef, date, start, end, price, info, isOver, click}) => {
                          setOpen(true)
                      }}
                      rel={info.status}>
-                    {price}р
+                    Событие!
                 </div>
             </Tooltip>
         )
@@ -57,6 +57,22 @@ const Cell = ({cartRef, date, start, end, price, info, isOver, click}) => {
             </div>
         )
     }
+    //event and filled statuses done
+    let text = ""
+    switch (info.status) {
+        case 'free':
+            text = price + 'р'
+            break
+        case 'booked':
+        case 'overfilled':
+            text = 'Занято'
+            break
+        case 'disabled':
+            text = 'Закрыто'
+            break
+    }
+
+
     return (
         <div onClick={() => {
             if (info.status === 'free')
@@ -65,7 +81,7 @@ const Cell = ({cartRef, date, start, end, price, info, isOver, click}) => {
              className={`cell ${selected ? 'selected' : 'intended-select'} ${isOver && 'isOver'}`}
              rel={info.status}>
             {selected && <DoneIcon/>}
-            {price}р
+            {text}
         </div>
     )
 }
