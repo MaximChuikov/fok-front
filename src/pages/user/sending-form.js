@@ -48,15 +48,12 @@ function SendForm() {
             "group_id": 216117994,
             "key": "dBuBKe1kFcdemzB"
         }).then(r => {
-            console.log(r.result, 'what is it?')
             if (r.result)
                 doRent()
             else
                 alert('Разрешите присылать вам сообщения')
         }).catch(e => {
             console.log(e.message)
-
-
         })
     }
 

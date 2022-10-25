@@ -33,7 +33,6 @@ const Account = () => {
                             requests.length === 0 ? <h1 key={1}>Список пуст</h1> :
                                 requests.map(request => (
                                     <Request phone={request.phone}
-                                             vk_url={'https://vk.com/id' + request.vk_user_id}
                                              sport={request.variant}
                                              status={request.status}
                                              booking_times={request.requested_time}

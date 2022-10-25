@@ -13,7 +13,7 @@ export const sport_hall = {
         },
         {
             text: 'Вид с улицы',
-            image: require('../../styles/images/sport-hall-mid.jpg')
+            image: require('../../styles/images/sport-hall-mid-16x9.png')
         }
     ]
 }
@@ -31,15 +31,15 @@ export const observe_data = [
         slides: [
             {
                 text: 'Размер ворот 2 на 3 метра',
-                image: require('../../styles/images/sport-hall-mid-16x9.png')
-            },
-            {
-                text: 'Хороший футбольный мяч Adidas',
                 image: require('../../styles/images/fok-side.jpg')
             },
             {
-                text: 'Вратарские перчатки Adidas Predator 2019',
+                text: 'Футбольный мяч',
                 image: require('../../styles/images/fok-side-from-bottom.jpg')
+            },
+            {
+                text: 'Вратарские перчатки',
+                image: require('../../styles/images/sport-hall-mid-16x9.png')
             }
         ]
     },
@@ -51,8 +51,8 @@ export const observe_data = [
                 image: require('../../styles/images/fok-side-from-bottom.jpg')
             },
             {
-                text: 'Хороший мяч Molten',
-                image: require('../../styles/images/football.png')
+                text: 'Баскетбольный мяч',
+                image: require('../../styles/images/sport-hall-mid-16x9.png')
             }
         ]
     },
@@ -64,12 +64,12 @@ export const observe_data = [
                 image: require('../../styles/images/fok-side-from-bottom.jpg')
             },
             {
-                text: 'Штанги там всякие',
-                image: require('../../styles/images/football.png')
+                text: 'Штанги',
+                image: require('../../styles/images/sport-hall-mid-16x9.png')
             },
             {
-                text: 'Не знаю че там еще у качков',
-                image: require('../../styles/images/fox.jpg')
+                text: 'Новинка, новый снаряд',
+                image: require('../../styles/images/fok-side.jpg')
             }
         ]
     }

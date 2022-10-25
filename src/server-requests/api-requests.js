@@ -34,6 +34,7 @@ export async function getSchedule(week, variant_id) {
 }
 
 export async function createRequest(variant_id, phone, requests) {
+    console.log(requests)
     return await axios.post(`${url}/user/rent-request`, {
         variant_id: variant_id,
         phone: phone,
