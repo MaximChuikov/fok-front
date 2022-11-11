@@ -11,6 +11,7 @@ import ShowerIcon from '@mui/icons-material/Shower';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import {Button} from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import '../../styles/sport-hall-styles.css'
 
@@ -18,6 +19,7 @@ export function ObserveSportHallBeforeRent() {
     const navigate = useNavigate()
     let location = useLocation()
     const sport = location?.state?.sport ?? ''
+    const height = 100000
     console.log(observe_data.find(d => d.sport === sport.name))
 
     function link() {
@@ -34,7 +36,7 @@ export function ObserveSportHallBeforeRent() {
             text: 'Душевые кабины'
         },
         {
-            icon: <LocalParkingIcon sx={{color: "#eae9e9", backgroundColor: "#20578f", borderRadius: "3px" }}/>,
+            icon: <LocalParkingIcon sx={{color: "#eae9e9", backgroundColor: "#20578f", borderRadius: "3px"}}/>,
             text: 'Вместительная парковка'
         },
         {
@@ -44,11 +46,24 @@ export function ObserveSportHallBeforeRent() {
     ]
 
     if (sport === '')
-        return <div></div>
+        return <div/>
 
     return (
         <div>
             <BackButton/>
+
+            <ExpandMoreIcon className={'to-bottom-button'}
+                            id={'scroll'}
+                            sx={{
+                                fontSize: '50px'
+                            }}
+                            onClick={() => {
+                                window.scrollTo({
+                                    top: height,
+                                    left: 0,
+                                    behavior: 'smooth',
+                                });
+                            }}/>
 
             <div className={'div-container'}>
                 <MyCard header={'Что есть в нашем ФОКе?'}>
@@ -56,7 +71,12 @@ export function ObserveSportHallBeforeRent() {
                         {
                             fok_have.map(el => (
                                 <div style={{marginBottom: "5px"}}>
-                                    <div style={{display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "start"}}>
+                                    <div style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                        justifyContent: "start"
+                                    }}>
                                         {el.icon}
                                         <h5 style={{margin: "0 0 0 4px"}}>{el.text}</h5>
                                     </div>
@@ -92,12 +112,12 @@ export function ObserveSportHallBeforeRent() {
                             <Carousel>
                                 {
                                     observe_data.find(d => d.sport === sport.name).slides.map(slide => (
-                                            <Carousel.Item>
-                                                <Image src={slide.image} className={'images-in-carousel'}/>
-                                                <Carousel.Caption>
-                                                    <p className={'slide-text'}>{slide.text}</p>
-                                                </Carousel.Caption>
-                                            </Carousel.Item>
+                                        <Carousel.Item>
+                                            <Image src={slide.image} className={'images-in-carousel'}/>
+                                            <Carousel.Caption>
+                                                <p className={'slide-text'}>{slide.text}</p>
+                                            </Carousel.Caption>
+                                        </Carousel.Item>
                                     ))
                                 }
                             </Carousel>
@@ -115,8 +135,14 @@ export function ObserveSportHallBeforeRent() {
 
                 <div style={{display: "flex", alignContent: "center"}}>
                     <Button variant={'contained'}
+                            id={'button'}
                             onClick={e => link()}
-                            sx={{backgroundColor: '#3f1ac5', margin: "0 auto", textTransform: 'none', padding: "12px 65px"}}>
+                            sx={{
+                                backgroundColor: '#3f1ac5',
+                                margin: "0 auto",
+                                textTransform: 'none',
+                                padding: "12px 65px"
+                            }}>
                         Выбрать время
                     </Button>
                 </div>

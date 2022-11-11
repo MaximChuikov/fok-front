@@ -30,11 +30,30 @@ h6 {
     align-items: center;
 }
 
-
-
 .cart-holder{
     height: 10em;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.info-button {
+    position: fixed;
+    left: 55px;
+    top: 12px;
+    color: #e3cd92;
+    cursor: pointer;
+    animation: 2s blink infinite;
+}
+
+@keyframes blink {
+    0% {
+        color: #e3cd92;
+    }
+    50% {
+        color: yellow;
+    }
+    100% {
+        color: #e3cd92;
+    }
 }

@@ -59,7 +59,7 @@ const Schedule = ({cart, setCart, clickable, variant_id}) => {
                         slide(-1).then(r => r)
                 }}>{'<'}</Button>
                 <h1>{week === 0 ? 'Текущая неделя' : `Неделя №${week}`}</h1>
-                <Button onClick={(e) => slide(1).then(r => r)}>{'>'}</Button>
+                <Button onClick={() => slide(1).then(r => r)}>{'>'}</Button>
             </div>
 
             <div className={'inline'} style={{marginBottom: '2rem'}}>

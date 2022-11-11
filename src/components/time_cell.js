@@ -40,7 +40,7 @@ const Cell = ({cartRef, date, start, end, price, info, isOver, click}) => {
                          setOpen(true)
                      }}
                      rel={info.status}>
-                    Событие!
+                    Событие
                 </div>
             </Tooltip>
         )
