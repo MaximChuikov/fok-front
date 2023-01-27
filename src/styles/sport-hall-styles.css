@@ -6,7 +6,7 @@
     margin: 0;
 }
 
-ul{
+ul {
     color: black;
 }
 
@@ -24,18 +24,21 @@ iframe {
     height: 100%;
 }
 
-.to-bottom-button {
-    background-color: white;
-    color: blue;
-    opacity: 0.5;
-    position: fixed;
-    right: 8px;
-    bottom: 8px;
-    z-index: 1000;
-    border-radius: 32px;
-    cursor: pointer;
+.bottom-button {
+    animation: 6s shadow-blinking infinite;
 }
+@keyframes shadow-blinking {
+    50% {
+        background-color: #3f1ac5;
+    }
+    54% {
+        background-color: #997fde;
+    }
+    58% {
+        background-color: #3f1ac5;
+    }
 
+}
 
 .carousel-wrapper {
     overflow: hidden;

@@ -4,7 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import '../styles/event-card.css'
 
-const EventCard = ({start, end, name, del}) => {
+const EventCard = ({start, end, name, deleteFunc}) => {
     const startTime = new Date(start)
     const endTime = new Date(end)
 
@@ -32,7 +32,7 @@ const EventCard = ({start, end, name, del}) => {
                 <h5>{formatDate(endTime)}</h5>
                 <div className={'bucket-container'}>
                     <DeleteIcon className={'bucket'}
-                                onClick={e => del()}/>
+                                onClick={e => deleteFunc()}/>
                 </div>
             </div>
         </MyCard>

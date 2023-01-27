@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+
+* {
+    margin: 0;
+    padding: 0;
+    color: #1E1E1E;
+    box-sizing: border-box;
+}
+:root {
+    --nav-bc: #162185;
+    --nav-bc-hover: #131c70;
+    --side-panel-bc: #7E73FF;
+    --white: #D9D9D9;
+    --white-hover: #c5c5c5;
+}
+body {
+    font-family: 'Proxima Nova', serif;
+}
+
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}

@@ -39,7 +39,7 @@ h6 {
 
 .info-button {
     position: fixed;
-    left: 55px;
+    left: 50px;
     top: 12px;
     color: #e3cd92;
     cursor: pointer;
@@ -57,3 +57,46 @@ h6 {
         color: #e3cd92;
     }
 }
+
+.sales {
+    position: fixed;
+    left: 91px;
+    top: 11px;
+    font-size: 20px;
+    background-color: #d02d1b;
+    border: solid 2px #7e0808;
+    color: white;
+    border-radius: 8px;
+    padding: 0 2px;
+    cursor: pointer;
+    animation: infinite linear-blink 6s;
+}
+@keyframes linear-blink {
+    0% {
+        background: #d02d1b;
+    }
+    40% {
+        background-color: #d02d1b;
+        border-color: #7e0808;
+    }
+    45% {
+        background-color: #e5766e;
+        border-color: #ad504b;
+    }
+    48% {
+        background-color: #e5766e;
+        border-color: #ad504b;
+    }
+    53% {
+        background-color: #d02d1b;
+        border-color: #7e0808;
+    }
+    100% {
+        background: #d02d1b;
+    }
+}
+
+.sales:hover {
+    background-color: #af2517;
+}
+
