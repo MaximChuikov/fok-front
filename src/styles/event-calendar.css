@@ -1,0 +1,41 @@
+.event-calendar-container {
+    width: 100%;
+    background-color: #ffc277;
+    padding: 10px;
+    border-radius: 12px;
+}
+.event-title {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    width: calc(100% + 20px);
+    left: -10px;
+    top: -10px;
+    position: relative;
+    padding: 10px 0;
+    background-color: #ffb959;
+    border-radius: 12px 12px 0 0;
+}
+.events-container {
+
+}
+.event-container {
+    margin-top: 10px;
+}
+.date-title {
+    font-size: 25px;
+    font-weight: 600;
+
+}
+.description {
+
+}
+.event-underline {
+    width: 80%;
+    height: 2px;
+    background-color: #eaab52;
+    margin: 10px auto 0 auto;
+}
+.event-container:nth-last-child(1) .event-underline {
+    display: none;
+}

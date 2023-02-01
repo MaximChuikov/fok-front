@@ -1,38 +1,49 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import "../styles/site-frame.css"
+import EventCalendar from "../components/EventCalendar";
+import Map from "../components/Map";
+import {Link} from "react-router-dom";
 
 const SiteFrame = () => {
+
+    function hideMenu() {
+        document.getElementById("side-menu").checked = false
+    }
+
     return (
         <div>
             <header className="header">
-                <a href="/" className="logo">
+                <Link className={'logo'} to={'/'} onClick={hideMenu}>
                     <img src={require("../images/logo.png")} alt={"ФОК"}/>
-                </a>
+                </Link>
 
-                <input className="side-menu" type="checkbox" id="side-menu"/>
-                <label className="hamburger" htmlFor="side-menu"><span className="hamburger-line"/></label>
+                <input className={'side-menu'} type="checkbox" id="side-menu"/>
+                <label className={'hamburger'} htmlFor="side-menu"><span className="hamburger-line"/></label>
 
                 <nav className="nav">
                     <ul className="menu">
-                        <li><a href="#">Главная</a></li>
-                        <li><a href="#">Секции</a></li>
-                        <li><a href="#">Тренажерный зал</a></li>
-                        <li><a href="#">Контакты</a></li>
-                        <li><a href="#">Личный кабинет</a></li>
+                        <li><Link className={'header-link'} to={'/'} onClick={hideMenu}>Главная</Link></li>
+                        <li><Link className={'header-link'} to={'/soon'} onClick={hideMenu}>Секции</Link></li>
+                        <li><Link className={'header-link'} to={'/soon'} onClick={hideMenu}>Тренажерный зал</Link></li>
+                        <li><Link className={'header-link'} to={'/soon'} onClick={hideMenu}>Контакты</Link></li>
+                        <li><Link className={'header-link'} to={'/cabinet'} onClick={hideMenu}>Личный кабинет</Link></li>
                     </ul>
                 </nav>
             </header>
 
             <main>
                 <article>
-                    <h1>
-                        Some content
-                    </h1>
-                    <p>
-                        More Content
-                    </p>
-                    <Outlet/>
+                    <div className={'content-wrapper'}>
+                        <div className={'outlet-div'}>
+                            <Outlet/>
+                        </div>
+                        <div className={'side-content-panel'}>
+                            <EventCalendar/>
+                            <Map/>
+                        </div>
+                    </div>
+
                 </article>
             </main>
         </div>

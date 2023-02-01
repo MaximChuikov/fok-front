@@ -1,74 +1,80 @@
-body {
-    background-color: #545abf;
-}
-
-body::-webkit-scrollbar {
-    width: 5px;
-}
-body::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px rgba(92, 41, 238, 0.3);
-    border-radius: 10px;
-}
-body::-webkit-scrollbar-thumb {
-    background-color: #9080cc;
-    outline: 1px solid slategrey;
-    border-radius: 10px;
-}
-
-.players-shower{
-    position: relative;
-    transform: translateX(-8px) translateY(-8px);
-    border: burlywood 3px;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(2px);
-    display: inline-flex;
-    padding: 3px;
-    margin-right: auto;
-    justify-content: center;
-}
-.player-icon{
-    display: inherit;
-    max-height: 20px;
-}
-
-.header {
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px #b099e1;
-    margin: 1rem 0;
-}
-
-.item {
+.fok-first-big-card {
+    border-radius: 12px;
     width: 100%;
-    align-items: center;
-
-}
-
-.container {
+    color: white;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    height: 100%;
 }
 
-.container>div {
-    flex: 0 50%;
-    box-sizing:border-box;
-    margin-bottom: 2em;
+.fok-first-big-card div {
+    color: white;
+    font-size: 24px;
 }
 
-.sport-card {
-    background-color: #3c5eb0;
+.fok-first-big-card div:nth-last-child(1) {
+    margin: 0 30% 30px 60px;
 }
 
-.sport-header {
-    color: #9b84ff;
+.fok-first-big-card div:nth-child(1) {
+    text-align: right;
+    align-self: flex-end;
+    margin: 0 40px 40px 0;
     font-weight: bold;
-    font-size: 15px;
+    letter-spacing: 3px;
+}
+@media (max-width: 1350px) {
+    .fok-first-big-card div {
+        font-size: 22px;
+    }
+    .fok-first-big-card div:nth-last-child(1) {
+        margin: 0 20% 25px 40px;
+    }
+    .fok-first-big-card div:nth-child(1) {
+        margin: 0 30px 30px 0;
+    }
+}
+@media (max-width: 1200px) {
+    .fok-first-big-card div {
+        font-size: 20px;
+    }
+    .fok-first-big-card div:nth-last-child(1) {
+        margin: 0 10% 15px 30px;
+    }
+    .fok-first-big-card div:nth-child(1) {
+        margin: 0 20px 20px 0;
+    }
 }
 
-.card-text {
-    padding: 2px 5px;
-    color: #c9daf3;
-    font-size: 0.9rem;
+@media (max-width: 1000px) {
+    .fok-first-big-card div {
+        font-size: 18px;
+    }
+}
+@media (max-width: 900px) {
+    .fok-first-big-card div {
+        font-size: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .fok-first-big-card div {
+        font-size: 19px;
+    }
+    .fok-first-big-card div:nth-child(1) {
+        margin: 0 20px 10% 0;
+    }
+    .fok-first-big-card div:nth-last-child(1) {
+        display: none;
+    }
+}
+@media (max-width: 635px) {
+    .fok-first-big-card div {
+        font-size: 13px;
+    }
+    .fok-first-big-card div:nth-child(1) {
+        margin: 0 0 10% 20px;
+        text-align: left;
+        align-self: start;
+    }
 }

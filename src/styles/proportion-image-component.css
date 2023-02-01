@@ -1,0 +1,23 @@
+.item-responsive {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+}
+.item-responsive:before {
+    display: block;
+    content: "";
+    width: 100%;
+}
+.item-16by9 {
+    padding-top: 56.25%;
+}
+.item-responsive > .responsive-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
