@@ -59,11 +59,10 @@ const MainPage = () => {
 
             {
                 card_data.map((el, index) => (
-                    <div key={index} style={{marginTop: "40px"}}>
-                        <DescriptionWithImage image={el.image}
-                                              text={el.text}
-                                              isLeft={index % 2 === 0}/>
-                    </div>
+                    <DescriptionWithImage image={el.image}
+                                          text={el.text}
+                                          isLeft={index % 2 === 0}
+                                          key={index}/>
                 ))
             }
         </>

@@ -1,4 +1,5 @@
 .card-and-description-container {
+    margin-top: 40px;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -64,8 +65,12 @@
 @media (max-width: 768px) {
     .card-and-description-container, .card-and-description-container[rel=false] {
         width: 100%;
+        margin-top: 20px;
     }
     .text-in-card div {
-        font-size: 20px;
+        font-size: 16px;
+    }
+    .text-in-card div, .text-in-card div[rel=false]  {
+        margin: 30px 20px 10px 20px;
     }
 }

@@ -12,6 +12,16 @@
     height: auto;
     position: relative;
 }
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .form-container::before{
     z-index: -10;
     content: "";
@@ -25,7 +35,21 @@
     );
     left: -80px;
     top: -80px;
+    animation: before-appear 2s ease-out;
 }
+@keyframes before-appear {
+    0% {
+        left: -200px;
+        top: -80px;
+        opacity: 0.3;
+    }
+    100% {
+        left: -80px;
+        top: -80px;
+        opacity: 1;
+    }
+}
+
 .form-container::after{
     z-index: -10;
     height: 200px;
@@ -40,6 +64,19 @@
     );
     right: -30px;
     bottom: -80px;
+    animation: after-appear 2s ease-out;
+}
+@keyframes after-appear {
+    0% {
+        right: -140px;
+        bottom: -80px;
+        opacity: 0.3;
+    }
+    100% {
+        right: -30px;
+        bottom: -80px;
+        opacity: 1;
+    }
 }
 
 
@@ -107,6 +144,7 @@
     font-size: 15px;
     cursor: pointer;
     font-weight: normal;
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -120,13 +158,41 @@
         height: 100px;
         width: 100px;
     }
-    .form-container::after{
-        right: -15px;
-        bottom: -40px;
-    }
     .form-container::before{
         left: -40px;
         top: -40px;
     }
+    .form-container::after{
+        right: -15px;
+        bottom: -40px;
+    }
+    .login-container {
+        margin-top: 50px;
+    }
 
+    @keyframes before-appear {
+        0% {
+            left: -70px;
+            top: -40px;
+            opacity: 0.3;
+        }
+        100% {
+            left: -40px;
+            top: -40px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes after-appear {
+        0% {
+            right: -45px;
+            bottom: -40px;
+            opacity: 0.3;
+        }
+        100% {
+            right: -15px;
+            bottom: -40px;
+            opacity: 1;
+        }
+    }
 }

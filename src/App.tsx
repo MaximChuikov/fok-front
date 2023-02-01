@@ -1,13 +1,14 @@
 import {createContext, FC, useContext, useEffect, useState} from "react";
 import React from "react"
-import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom"
-import {Context, store} from "./index";
-import "./styles/general-styles.css"
+import {Link, Route, Routes, useLocation} from "react-router-dom"
+import {Context} from "./index";
+import "./styles/global-styles.css"
 
 import SiteFrame from "./pages/SiteFrame";
 import MainPage from "./pages/MainPage";
 import Login from "./pages/Login";
 import {Alert, Snackbar, AlertColor} from "@mui/material";
+import SportSections from "./pages/SportSections";
 
 
 interface Message {
@@ -36,14 +37,14 @@ const App: FC = () => {
 
 
     useEffect(() => {
-        async function fetch() {
-            if (localStorage.getItem('token')) {
-                await store.checkAuth()
+            async function fetch() {
+                if (localStorage.getItem('token')) {
+                    await store.checkAuth()
+                }
             }
-        }
 
-        fetch().then()
-    }, [])
+            fetch().then()
+        }, [])
 
     return (
         <>
@@ -68,15 +69,17 @@ const App: FC = () => {
                 <Routes>
                     <Route path={'/'} element={<SiteFrame/>}>
                         <Route index element={<MainPage/>}/>
-                        <Route path={'/cabinet'} element={<Login/>}/>
+                        <Route path={'cabinet'} element={<Login/>}/>
+                        <Route path={'sport-sections'} element={<SportSections/>}/>
                         <Route path={'soon'} element={<h1>Эта сраница разрабатывается, заходите попозже :)</h1>}/>
+                        <Route path={'*'} element={
+                            <h1>Ошибка, этой страницы не существует
+                                <br/> {location.pathname} <br/>
+                                <Link to={'/'} style={{textDecoration: "underline"}}>Нажмите, чтобы вернуться на главную
+                                    страницу</Link>
+                            </h1>
+                        }/>
                     </Route>
-                    <Route path={'/*'} element={
-                        <h1>Ошибка, этой страницы не существует
-                            <br/> {location.pathname} <br/>
-                            <Link to={'/'}>домой</Link>
-                        </h1>
-                    }/>
                 </Routes>
             </MessageContext.Provider>
         </>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {MessageContext} from "../App";
 import {Context} from '../index'
 import '../styles/login.css'
@@ -35,7 +35,7 @@ const Login = () => {
                             <input className={'login-input'} type={'password'} placeholder={'Пароль'} id={'password'}/>
                             <button className={'login-button'}>Войти</button>
                             <div className={'change-auth-variant'} onClick={() => setIsLoginPage(false)}>
-                                Нет аккаунта? Зарегистрируйтесь прямо сейчас!
+                                Нет аккаунта? Нажмите и зарегистрируйтесь прямо сейчас!
                             </div>
                         </form>
                     </div>
@@ -60,7 +60,7 @@ const Login = () => {
                                 showMessage("Пароли не совпадают", false)
                             }
                         }}>
-                            <h3>Зарегистрироваться</h3>
+                            <h3>Регистрация</h3>
                             <label className={'login-label'} htmlFor={'email'}>Ваша почта</label>
                             <input className={'login-input'} type={'email'} placeholder={'Почта'} id={'email'}/>
 

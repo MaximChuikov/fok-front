@@ -24,7 +24,7 @@ const SiteFrame = () => {
                 <nav className="nav">
                     <ul className="menu">
                         <li><Link className={'header-link'} to={'/'} onClick={hideMenu}>Главная</Link></li>
-                        <li><Link className={'header-link'} to={'/soon'} onClick={hideMenu}>Секции</Link></li>
+                        <li><Link className={'header-link'} to={'/sport-sections'} onClick={hideMenu}>Секции</Link></li>
                         <li><Link className={'header-link'} to={'/soon'} onClick={hideMenu}>Тренажерный зал</Link></li>
                         <li><Link className={'header-link'} to={'/soon'} onClick={hideMenu}>Контакты</Link></li>
                         <li><Link className={'header-link'} to={'/cabinet'} onClick={hideMenu}>Личный кабинет</Link></li>
