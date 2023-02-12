@@ -9,6 +9,11 @@ import MainPage from "./pages/MainPage";
 import Login from "./pages/Login";
 import {Alert, Snackbar, AlertColor} from "@mui/material";
 import SportSections from "./pages/SportSections";
+import Contacts from "./pages/Contacts";
+import Events from "./pages/Events";
+import ProtectedRoute from "./pages/AdminPages/ProtectedRoute";
+import AdminOverview from "./pages/AdminPages/AdminOverview";
+import ScheduleMap from "./components/Schedule/ScheduleMap";
 
 
 interface Message {
@@ -71,7 +76,10 @@ const App: FC = () => {
                         <Route index element={<MainPage/>}/>
                         <Route path={'cabinet'} element={<Login/>}/>
                         <Route path={'sport-sections'} element={<SportSections/>}/>
-                        <Route path={'soon'} element={<h1>Эта сраница разрабатывается, заходите попозже :)</h1>}/>
+                        <Route path={'contacts'} element={<Contacts/>}/>
+                        <Route path={'events'} element={<Events/>}/>
+                        <Route path={'gym'} element={<ScheduleMap isHaveCart={true}/>}/>
+
                         <Route path={'*'} element={
                             <h1>Ошибка, этой страницы не существует
                                 <br/> {location.pathname} <br/>
@@ -79,6 +87,9 @@ const App: FC = () => {
                                     страницу</Link>
                             </h1>
                         }/>
+                    </Route>
+                    <Route path={'/control-panel'} element={<ProtectedRoute/>}>
+                        <Route index element={<AdminOverview/>}/>
                     </Route>
                 </Routes>
             </MessageContext.Provider>

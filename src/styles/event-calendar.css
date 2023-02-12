@@ -16,19 +16,23 @@
     background-color: #ffb959;
     border-radius: 12px 12px 0 0;
 }
-.events-container {
-
-}
 .event-container {
     margin-top: 10px;
 }
 .date-title {
     font-size: 25px;
     font-weight: 600;
-
 }
 .description {
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    line-clamp: 10;
+    box-orient: vertical;
 }
 .event-underline {
     width: 80%;

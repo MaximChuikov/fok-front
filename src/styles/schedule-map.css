@@ -1,0 +1,30 @@
+.schedule-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.schedule-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.schedule-title button {
+    width: 40px;
+    height: 40px;
+}
+
+.cells-container {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.filling-empty-space-child {
+    width: 110px;
+    height:0;
+}

@@ -2,15 +2,16 @@ import React, {useEffect, useState} from 'react';
 import '../styles/event-calendar.css'
 import EventService from '../services/EventService'
 import {Event} from '../models/response/ResponseTypes'
+import {Link} from "react-router-dom";
 
 const EventCalendar = () => {
     const [events, setEvents] = useState({} as Event[])
     useEffect(() => {
         async function fetch() {
             const ne = await EventService.nearest_events()
-            console.log(ne.data)
             setEvents(ne.data)
         }
+
         fetch().then()
     }, [])
 
@@ -32,14 +33,16 @@ const EventCalendar = () => {
     }
 
     return (
-        <div className={'event-calendar-container'}>
-            <div className={'event-title'}>
-                События
+        <Link to={'events'}>
+            <div className={'event-calendar-container'}>
+                <div className={'event-title'}>
+                    События
+                </div>
+                <div>
+                    {calendar()}
+                </div>
             </div>
-            <div className={'events-container'}>
-                {calendar()}
-            </div>
-        </div>
+        </Link>
     );
 
 };

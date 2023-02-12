@@ -1,0 +1,12 @@
+.events-title {
+}
+.events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.events-array {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

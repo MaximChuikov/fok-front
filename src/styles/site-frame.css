@@ -46,6 +46,10 @@
     color: var(--white);
 }
 
+.menu li:nth-last-child(4) {
+    display: none;
+}
+
 .menu .header-link:hover {
     background-color: var(--nav-bc-hover);
     color: var(--white-hover);
@@ -206,5 +210,9 @@
 
     .side-content-panel {
         display: none;
+    }
+
+    .menu li:nth-last-child(4) {
+        display: inherit;
     }
 }

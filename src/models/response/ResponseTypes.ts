@@ -13,3 +13,56 @@ export type Event = {
     publication_date_title: string
     event_description: string
 }
+
+export type FutureEvents = {
+    title: string,
+    events: Event[]
+}[]
+
+export type ScheduleCell = {
+    price: number,
+    time_start: string,
+    time_end: string,
+    info: {
+        status: string,
+        isOver: boolean,
+        filled: number,
+        capacity: number
+    }
+}
+
+export type Schedule = {
+    pay_info: {
+        free_hours: number,
+        payed_hours: number
+    },
+    schedule: {
+        shortDate: string,
+        schedule: ScheduleCell[]
+    }
+}
+
+export type MyBooks = {
+    book_id: number
+    free_hours: number
+    payed_hours: number
+    user_id: number
+    start_time: string
+    end_time: string
+}[]
+
+export type BookRegistration = {
+    user_registered: boolean
+    user_id: number | null
+    non_reg_user_name: string | null
+    booking_list: {
+        start_time: Date
+        end_time: Date
+    }[],
+    free_hours: number,
+    payed_hours: number
+}
+
+export type AbonnementInfo = { visits: number, ends?: undefined } |
+    { ends: Date, visits?: undefined} |
+    {visits?: undefined, ends?: undefined}

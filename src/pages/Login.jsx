@@ -3,6 +3,7 @@ import {MessageContext} from "../App";
 import {Context} from '../index'
 import '../styles/login.css'
 import {observer} from 'mobx-react-lite'
+import UserCabinet from "./UserCabinet";
 
 const Login = () => {
     const {store} = useContext(Context);
@@ -10,9 +11,8 @@ const Login = () => {
 
     const [isLoginPage, setIsLoginPage] = useState(true)
 
-
     if (store.isLoading) {
-        return <div>Загрузка ауфа</div>
+        return <div>Проверка авторизанны ли вы...</div>
     }
     if (!store.isAuth)
         if (isLoginPage) {
@@ -23,7 +23,6 @@ const Login = () => {
                             e.preventDefault();
                             const email = e.target[0].value
                             const pwd = e.target[1].value
-                            console.log(email, pwd)
                             await store.login(email, pwd,
                                 showMessage("Вы успешно авторизовались", true),
                                 (err) => showMessage(err, false))
@@ -50,7 +49,6 @@ const Login = () => {
                             const email = e.target[0].value
                             const pwd1 = e.target[1].value
                             const pwd2 = e.target[2].value
-                            console.log(email, pwd1, pwd2)
                             if (pwd1 === pwd2) {
                                 await store.registration(email, pwd1,
                                     showMessage("Подтвердите вашу почту. Вам отправлено письмо с кнопкой активации.", true),
@@ -79,18 +77,8 @@ const Login = () => {
                 </div>
             )
         }
-
-
     return (
-        <div>
-            Вы авторизованы<br/>id пользователя {store.user.u_id}<br/>Роль {store.user.role}<br/>{store.user.active ? 'Почта активирована' : "Почта не подтверждена"}<br/>
-            <button onClick={async () => {
-                await store.logout(
-                    showMessage("Вы вышли из аккаунта", true),
-                    (err) => showMessage(err, false))
-            }}>Выйти
-            </button>
-        </div>
+        <UserCabinet/>
     )
 };
 

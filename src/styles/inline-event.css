@@ -1,0 +1,16 @@
+.inline-event-container {
+    background-color: #ffb959;
+    border-radius: 12px;
+    border: solid #ffb249 1px;
+    padding: 20px 40px 20px 20px;
+    min-width: 60%;
+    width: auto;
+    display: inline-block;
+}
+.event-date {
+    font-size: 20px;
+    font-weight: bold;
+}
+.event-text {
+
+}

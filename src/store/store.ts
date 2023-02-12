@@ -41,7 +41,6 @@ export default class Store {
     async registration(email: string, password: string, success: () => void, error: (errorMessage: string) => void) {
         try {
             const response = await AuthService.registration(email, password);
-            console.log(response)
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);
@@ -53,7 +52,7 @@ export default class Store {
 
     async logout(success: () => void, error: (errorMessage: string) => void) {
         try {
-            const response = await AuthService.logout();
+            await AuthService.logout();
             localStorage.removeItem('token');
             this.setAuth(false);
             this.setUser({} as IUser);
@@ -66,13 +65,11 @@ export default class Store {
     async checkAuth() {
         this.setLoading(true);
         try {
-            const response = await axios.get<ResponseTypes>(`${API_URL}/refresh`, {withCredentials: true})
-            console.log(response, 'checkAuth');
+            const response = await axios.get<ResponseTypes>(`${API_URL}refresh`, {withCredentials: true})
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
             this.setUser(response.data.user);
         } catch (e) {
-            console.log(e);
         } finally {
             this.setLoading(false);
         }
