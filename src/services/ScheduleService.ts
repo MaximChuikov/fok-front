@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios';
-import {BookRegistration, MyBooks, Schedule} from "../models/response/ResponseTypes";
+import {Book, BookRegistration, MyBooks, Schedule} from "../models/response/ResponseTypes";
 import $api, {API_URL} from '../http'
 
 export default class ScheduleService {
@@ -14,5 +14,8 @@ export default class ScheduleService {
     }
     static async my_books(): Promise<AxiosResponse<MyBooks>> {
         return await $api.get<MyBooks>(API_URL + 'my-books')
+    }
+    static async time_full_info(time_start: string, time_end: string): Promise<AxiosResponse<Book[]>> {
+        return await $api.get<Book[]>(API_URL + `time-full-info?time_start=${time_start}&time_end=${time_end}`)
     }
 }

@@ -7,6 +7,8 @@ import ScheduleService from "../services/ScheduleService";
 import AbonnementService from "../services/AbonnementService";
 import {AbonnementInfo, MyBooks} from "../models/response/ResponseTypes";
 import {isEmptyObject} from "jquery";
+import "../styles/user-cabinet.css"
+import {BigSkeleton, SmallSkeleton} from "../components/Skeleton";
 
 const UserCabinet = () => {
     const {store} = useContext(Context)
@@ -22,62 +24,76 @@ const UserCabinet = () => {
 
     function abonnementInfo() {
         if (isLoading)
-            return <div>Загрузка данных об абонементе</div>
+            return <SmallSkeleton/>
         else if (!isEmptyObject(abonnement)) {
-            if (abonnement.visits) {
-                return <div>Осталось посещений ${abonnement.visits}</div>
-            }
-            else if (abonnement.ends)
-                return <div>Ваш абонемент истекает ${new Date(abonnement.ends).toLocaleDateString()}</div>
-            else return <></>
-        }
-
-        else
-            return <div>У вас не приобретен абонемент.</div>
+            const ends = () => {
+                if (abonnement.visits) {
+                    return `Осталось посещений: ${abonnement.visits}`
+                } else if (abonnement.ends)
+                    return `Ваш абонемент истекает - ${new Date(abonnement.ends).toLocaleDateString()}`
+            };
+            return (
+                <div>
+                    У вас есть активный абоннемент:<br/>{ends()}
+                </div>
+            )
+        } else
+            return "У вас не приобретен абонемент"
 
     }
 
     function booksInfo() {
         if (isLoadingBooks)
-            return <div>Загрузка данных о бронировании</div>
+            return <BigSkeleton/>
         else if (!isEmptyObject(books)) {
             return (
-                <div>
-                    {
-                        books.map((e, index) =>
-                            <div key={index}>
+                books.map((e, index) =>
+                    <div key={index}>
+                        <div className={'flex-space-around'}>
+                            <div>
                                 Номер брони: {e.book_id}<br/>
-                                Начало в: {new Date(e.start_time).toLocaleString()}<br/>
-                                Заканчивается: {new Date(e.end_time).toLocaleString()}<br/>
+                                Дата: {new Date(e.start_time).toLocaleDateString()}<br/>
+                                Время: {new Date(e.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                                <> - </>{new Date(e.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}<br/>
                                 К оплате: {e.payed_hours * 200} руб.
                             </div>
-                        )
-                    }
-                </div>
+                            <button>Отменить</button>
+                        </div>
+                    </div>
+                )
             )
-        }
-        else
-            return <div>Бронирований не найдено.</div>
-
+        } else
+            return "Бронирований не найдено."
     }
 
     return (
         <div>
-            Вы авторизованы<br/>id
-            пользователя {store.user.u_id}<br/>Роль {store.user.role}<br/>{store.user.active ? 'Почта активирована' : "Почта не подтверждена"}<br/>
-            <button onClick={async () => {
-                if (message)
-                    await store.logout(
-                        () => message.showMessage("Вы вышли из аккаунта", true),
-                        (err) => message.showMessage(err, false))
-            }}>Выйти
-            </button>
-            {
-                (store.user.role === "ADMIN" || store.user.role === "ADMINISTRATOR")
-                && <Link to={"/control-panel"}>В панель управления</Link>
-            }
-            {abonnementInfo()}
-            {booksInfo()}
+            <div className={'cabinet-container'}>
+                <div className={'flex-space-around'}>
+                    <div className={'account-data card-wrapper'}>
+                        Ваш ID пользователя: <b>{store.user.u_id}</b> <br/>
+                        {store.user.active ? 'Почта подтверждена' : "Почта не подтверждена"}<br/>
+                    </div>
+                    <button onClick={async () => {
+                        if (message)
+                            await store.logout(
+                                () => message.showMessage("Вы вышли из аккаунта", true),
+                                (err) => message.showMessage(err, false))
+                    }}>Выйти
+                    </button>
+
+                </div>
+                {
+                    (store.user.role === "ADMIN" || store.user.role === "ADMINISTRATOR")
+                    && <Link className={'admin-link'} to={"/control-panel"}>В панель управления</Link>
+                }
+                <div className={'card-wrapper abonnement'} style={{margin: "10px 0"}}>
+                    {abonnementInfo()}
+                </div>
+                <div className={'books-container'}>
+                    {booksInfo()}
+                </div>
+            </div>
         </div>
 
     );

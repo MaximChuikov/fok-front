@@ -10,8 +10,5 @@ export default class EventService {
     static async future_events(): Promise<AxiosResponse<FutureEvents>> {
         return await axios.get<FutureEvents>(API_URL + 'future-events')
     }
-    static async last_six_events(): Promise<AxiosResponse<Event[]>> {
-        return await axios.get<Event[]>(API_URL + '')
-    }
 }
 

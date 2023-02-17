@@ -42,8 +42,10 @@ const SiteFrame = () => {
                             <Outlet/>
                         </div>
                         <div className={'side-content-panel'}>
-                            <EventCalendar/>
-                            <Map/>
+                            <div className={'sticky-side'}>
+                                <EventCalendar/>
+                                <Map/>
+                            </div>
                         </div>
                     </div>
 

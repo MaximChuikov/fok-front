@@ -50,6 +50,10 @@
     display: none;
 }
 
+.menu li:last-child {
+    width: 350px;
+}
+
 .menu .header-link:hover {
     background-color: var(--nav-bc-hover);
     color: var(--white-hover);
@@ -135,8 +139,12 @@
     padding: 20px;
     background-color: var(--side-panel-bc);
     min-height: calc(100vh - 70px);
+}
+.sticky-side {
+    top: 90px;
     position: sticky;
 }
+
 
 @media (max-width: 1120px) {
     .menu {
@@ -150,6 +158,9 @@
     .side-content-panel {
         max-width: 260px;
         min-width: 260px;
+    }
+    .menu li:last-child {
+        width: 260px;
     }
 }
 @media (max-width: 900px) {
@@ -185,7 +196,6 @@
     .menu li:last-child {
         margin-left: auto;
         text-align: center;
-        width: 350px;
     }
 
     .hamburger {

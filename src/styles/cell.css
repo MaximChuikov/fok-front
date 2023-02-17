@@ -19,38 +19,33 @@
 }
 
 .selected {
-    background-color: #20c997;
+    border-color: #1ba27b;
+    box-shadow: 0 0 4px #1ba27b;
+    animation: shadow ease-out 0.3s;
 }
 
-.intended-select[rel=disabled] {
-    background-color: #4d5154;
+@keyframes shadow {
+    0% {
+        box-shadow: 0 0 0 white;
+    }
+    100% {
+        border-color: #1ba27b;
+        box-shadow: 0 0 4px #1ba27b;
+    }
+}
+
+.fill-bar {
+    height: 2px;
+    width: 80%;
+    margin: 5px auto;
+    background: linear-gradient(90deg, #131c70 0%, #131c70 var(--percent), #e5e5e5 var(--percent), #e5e5e5 100%);
+    transition: ease-out 0.3s;
+}
+
+.over, .overfilled {
+    background-color: rgba(98, 78, 78, 0.1);
     pointer-events: none;
 }
-
-.intended-select[rel=free] {
-    background-color: snow;
-}
-
-.intended-select[rel=event] {
-    background-color: orange;
-}
-
-.intended-select[rel=booked] {
-    background-color: rebeccapurple;
-    pointer-events: none;
-}
-
-.intended-select[rel=filled] {
-    /*background: linear-gradient(to right, #545abf 30%, white 50%);*/
-}
-
-.intended-select[rel=overfilled] {
-    background-color: rebeccapurple;
-    pointer-events: none;
-}
-
-.tooltip-text-container {
-    font-size: 14px;
-    font-family: "Courier New", serif;
-    word-wrap: anywhere;
+.overfilled {
+    background-color: rgba(0, 17, 253, 0.25);
 }

@@ -1,0 +1,34 @@
+.state-container, .cart-container {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 12px;
+    border: 2px solid var(--border-purple);
+}
+
+.cart-container {
+
+}
+
+.hours-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.hour {
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bucket {
+    /*style={{cursor: "pointer", color: "#cc0f68", opacity: "0.6"}}*/
+    cursor: pointer;
+    fill: var(--nav-bc);
+}
+
+.buttons-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}

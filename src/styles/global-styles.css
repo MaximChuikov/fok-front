@@ -5,25 +5,47 @@
     padding: 0;
     color: #1E1E1E;
     box-sizing: border-box;
-
 }
+
+*:focus {
+    outline:none;
+}
+
 :root {
     --nav-bc: #2130bb;
     --nav-bc-hover: #131c70;
     --side-panel-bc: #7E73FF;
+    --border-purple: #92b7fd;
     --white: #EEEEEE;
     --white-hover: #e5e5e5;
     font-size: 23px;
 }
+
 body {
     font-family: 'Proxima Nova', serif;
 }
 
-a{
+a {
     text-decoration: none;
 }
-ul{
+
+ul {
     list-style: none;
+}
+
+button {
+    background-color: #3f1ac5;
+    color: white;
+    border: 1px #131c70;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 17px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #131c70;
+    box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 1200px) {
@@ -31,11 +53,13 @@ ul{
         font-size: 20px;
     }
 }
+
 @media (max-width: 1000px) {
     :root {
         font-size: 19px;
     }
 }
+
 @media (max-width: 768px) {
     :root {
         font-size: 20px;

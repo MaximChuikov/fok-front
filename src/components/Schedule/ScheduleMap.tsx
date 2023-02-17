@@ -7,6 +7,7 @@ import Cell from "./components/Cell";
 import Cart from "./components/Cart";
 import {isEmptyObject} from "jquery";
 import {MessageContext} from "../../App";
+import {BigSkeleton} from "../Skeleton";
 
 interface ScheduleCont {
     cellClick(cell: ScheduleCell): void
@@ -93,7 +94,10 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
                         slide(-1)
                 }}>{'<'}</button>
                 <h1>{schedule.schedule.shortDate}</h1>
-                <button onClick={() => slide(1)}>{'>'}</button>
+                <button onClick={() => {
+                    if (day < 7)
+                        slide(1)
+                }}>{'>'}</button>
             </div>
         )
     }
@@ -154,8 +158,10 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
                         return {free_hours: free, payed_hours: pay}
                     },
                     showFuturePayment(): { free_hours: number; payed_hours: number } {
-                        return {free_hours: schedule.pay_info.free_hours - free,
-                            payed_hours: schedule.pay_info.payed_hours - pay}
+                        return {
+                            free_hours: schedule.pay_info.free_hours - free,
+                            payed_hours: schedule.pay_info.payed_hours - pay
+                        }
                     },
                     allFreeHours(): number {
                         return schedule.pay_info.free_hours
@@ -179,8 +185,7 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
                         return buying
                     }
                 }}>
-                    <div
-                        className={'schedule-container'}>
+                    <div className={'schedule-container'}>
                         {!buying && ScheduleTitle()}
                         {!buying && Cells()}
                         {props.isHaveCart && <Cart/>}
@@ -188,13 +193,12 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
                 </ScheduleContext.Provider>
 
             )
-        } else if (error)
-            return (
-                <h1>{error}</h1>
-            )
+        }
         else
             return (
-                <h1>Загрузка...</h1>
+                <div className={'schedule-container'}>
+                    <BigSkeleton/>
+                </div>
             )
     } else {
         return (

@@ -51,6 +51,19 @@ export type MyBooks = {
     end_time: string
 }[]
 
+export type Book = {
+    user_registered: boolean
+    book_id: number
+    non_reg_user_name: string | null
+    start_time: string
+    end_time: string
+    status: string
+    free_hours: number
+    payed_hours: number
+    user_id: number | null
+    abonnement: AbonnementInfo | null
+}
+
 export type BookRegistration = {
     user_registered: boolean
     user_id: number | null
