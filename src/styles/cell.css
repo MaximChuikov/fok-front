@@ -49,3 +49,7 @@
 .overfilled {
     background-color: rgba(0, 17, 253, 0.25);
 }
+
+.admin-over {
+    background-color: rgba(98, 78, 78, 0.1);
+}

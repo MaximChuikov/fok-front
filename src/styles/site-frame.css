@@ -1,4 +1,4 @@
-.header {
+.header, .admin-header {
     z-index: 999;
     background-color: var(--nav-bc);
     box-shadow: 1px 1px 5px 0 #3c5eb0;
@@ -11,6 +11,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.admin-header {
+    background-color: #a12424;
 }
 
 .logo {
@@ -32,6 +36,8 @@
     position: fixed;
     background-color: var(--nav-bc);
     overflow: hidden;
+    max-height: 0;
+    transition: max-height .5s ease-out;
 }
 
 .menu {
@@ -57,11 +63,6 @@
 .menu .header-link:hover {
     background-color: var(--nav-bc-hover);
     color: var(--white-hover);
-}
-
-.nav {
-    max-height: 0;
-    transition: max-height .5s ease-out;
 }
 
 .hamburger {
@@ -139,10 +140,6 @@
     padding: 20px;
     background-color: var(--side-panel-bc);
     min-height: calc(100vh - 70px);
-}
-.sticky-side {
-    top: 90px;
-    position: sticky;
 }
 
 

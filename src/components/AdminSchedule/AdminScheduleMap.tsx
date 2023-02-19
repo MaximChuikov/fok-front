@@ -5,6 +5,7 @@ import {Book, Schedule, ScheduleCell} from "../../models/response/ResponseTypes"
 import {isEmptyObject} from "jquery";
 import {MessageContext} from "../../App";
 import AdminCell from "./AdminCell";
+import {BigSkeleton} from "../Skeleton";
 
 interface AdminScheduleCont {
     cellClick(cell: ScheduleCell): void
@@ -20,12 +21,15 @@ const AdminScheduleMap = () => {
 
     const message = useContext(MessageContext)
 
-    useEffect(() => {
-        async function fetch() {
-            const sch = await ScheduleService.get_schedule_table(day).then(r => r.data)
-            setSchedule(sch)
-        }
+    async function fetch() {
+        setSchedule({} as Schedule)
+        setCell({} as ScheduleCell)
+        setShowCellInfo({} as Book[])
+        const sch = await ScheduleService.get_schedule_table(day).then(r => r.data)
+        setSchedule(sch)
+    }
 
+    useEffect(() => {
         fetch()
             .then()
             .catch(e => {
@@ -88,36 +92,44 @@ const AdminScheduleMap = () => {
     )
 
     const CellInfo = () => {
-        function payment(status: string) {
+        function payment(status: string, book_id: number) {
             if (status === "PAYMENT_EXPECTED")
                 return (
-                    <div>
-                        Ожидается оплата
-                        <button>Пользователь оплатил</button>
-                    </div>
+                    <>
+                        <div className={'payment-expected'}>Ожидается оплата</div>
+                        <button onClick={async () => {
+                            await ScheduleService.apply_book(book_id)
+                                .then(async r => {
+                                    message?.showMessage(r.data, true)
+                                    await fetch()
+                                })
+                                .catch(e => {
+                                    message?.showMessage(e?.response?.data?.message ?? "Ошибка", false)
+                                })
+                        }}>Пользователь оплатил</button>
+                    </>
                 )
             else if (status === "PAID")
                 return (
-                    <div>
-                        Оплачено
-                    </div>
+                    <div className={'paid'}>Оплачено</div>
                 )
             else
                 return (
-                    <div>
-                        Неизвестный статус: {status}
-                    </div>
+                    <>Неизвестный статус: {status}</>
                 )
         }
 
-        if (!isEmptyObject(showCellInfo)) {
+        if (isEmptyObject(cell))
+            return
+        else if (!isEmptyObject(showCellInfo)) {
             return (
                 <div>
-                    Информация о брони на {new Date(cell.time_start).toLocaleString()}
-                    - {new Date(cell.time_end).toLocaleString()}
+                    Информация о бронировании на
+                    <br/>
+                    {new Date(cell.time_start).toLocaleString()} - {new Date(cell.time_end).toLocaleTimeString()}
                     <br/>
                     {showCellInfo.map((e, index) => (
-                        <div key={index}>
+                        <div className={'book-info'} key={index}>
                             {
                                 e.user_registered
                                     ? "ID пользователя: " + e.user_id
@@ -128,14 +140,23 @@ const AdminScheduleMap = () => {
                             <br/>
                             Часы за свой счет: {e.payed_hours}
                             <br/>
-                            К оплате (без учета скидок): <b>{e.payed_hours * 200}</b>
-                            {payment(e.status)}
+                            <div>К оплате (без учета скидок): <b>{e.payed_hours * 200} руб.</b></div>
+                            {payment(e.status, e.book_id)}
                         </div>
                     ))}
                 </div>
             )
         } else {
-            return <h1>Это время никто не забронировал</h1>
+            return (
+                <div>
+                    Информация о бронировании на
+                    <br/>
+                    {new Date(cell.time_start).toLocaleString()} - {new Date(cell.time_end).toLocaleTimeString()}
+                    <br/>
+                    <h3>Это время никто не забронировал</h3>
+                </div>
+
+            )
         }
 
     }
@@ -149,6 +170,7 @@ const AdminScheduleMap = () => {
                 }
             }}>
                 <div className={'schedule-container'}>
+                    <button style={{marginBottom: "6px"}} onClick={async () => await fetch()}>Обновить сетку</button>
                     {AdminScheduleTitle()}
                     {Cells()}
                     {CellInfo()}
@@ -162,7 +184,7 @@ const AdminScheduleMap = () => {
         )
     else
         return (
-            <h1>Загрузка...</h1>
+            <BigSkeleton/>
         )
 
 

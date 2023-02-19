@@ -1,11 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {Context} from '../index'
 import {MessageContext} from "../App";
 import useFetch from "../services/useFetch";
 import ScheduleService from "../services/ScheduleService";
 import AbonnementService from "../services/AbonnementService";
-import {AbonnementInfo, MyBooks} from "../models/response/ResponseTypes";
+import {AbonnementInfo, Book, MyBooks} from "../models/response/ResponseTypes";
 import {isEmptyObject} from "jquery";
 import "../styles/user-cabinet.css"
 import {BigSkeleton, SmallSkeleton} from "../components/Skeleton";
@@ -18,9 +18,20 @@ const UserCabinet = () => {
         return await AbonnementService.my_abonnement().then(r => r.data)
     })
 
-    const [books, isLoadingBooks] = useFetch<MyBooks>(async () => {
-        return await ScheduleService.my_books().then(r => r.data)
-    })
+    const [isLoad, setLoad] = useState(true)
+    const [books, setBooks] = useState({} as MyBooks)
+
+    async function fetchBooks() {
+        setLoad(true)
+        setBooks(await ScheduleService.my_books().then(r => r.data))
+        setLoad(false)
+    }
+
+    useEffect(() => {
+        fetchBooks().then()
+    }, [])
+
+
 
     function abonnementInfo() {
         if (isLoading)
@@ -34,7 +45,7 @@ const UserCabinet = () => {
             };
             return (
                 <div>
-                    У вас есть активный абоннемент:<br/>{ends()}
+                    У вас есть активный абонемент:<br/>{ends()}
                 </div>
             )
         } else
@@ -43,7 +54,7 @@ const UserCabinet = () => {
     }
 
     function booksInfo() {
-        if (isLoadingBooks)
+        if (isLoad)
             return <BigSkeleton/>
         else if (!isEmptyObject(books)) {
             return (
@@ -55,9 +66,24 @@ const UserCabinet = () => {
                                 Дата: {new Date(e.start_time).toLocaleDateString()}<br/>
                                 Время: {new Date(e.start_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                                 <> - </>{new Date(e.end_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}<br/>
-                                К оплате: {e.payed_hours * 200} руб.
+                                {e.status !== "PAID" && `К оплате: ${e.payed_hours * 200} руб.`}
+
                             </div>
-                            <button>Отменить</button>
+                            {
+                                e.status !== "PAID" &&
+                                <button onClick={async () => {
+                                    await ScheduleService.cancel_book(e.book_id)
+                                        .then(async e => {
+                                            message?.showMessage(e.data, true)
+                                            await fetchBooks()
+                                        })
+                                        .catch(e => {
+                                            console.log(e)
+                                            message?.showMessage(e?.response?.data?.message ?? "Ошибка", false)
+                                        })
+                                }}>Отменить</button>
+                            }
+
                         </div>
                     </div>
                 )
@@ -70,10 +96,16 @@ const UserCabinet = () => {
         <div>
             <div className={'cabinet-container'}>
                 <div className={'flex-space-around'}>
-                    <div className={'account-data card-wrapper'}>
-                        Ваш ID пользователя: <b>{store.user.u_id}</b> <br/>
-                        {store.user.active ? 'Почта подтверждена' : "Почта не подтверждена"}<br/>
+                    <div className={'cards-together'}>
+                        <div className={'account-data card-wrapper'}>
+                            Ваш ID пользователя: <b>{store.user.u_id}</b> <br/>
+                            {store.user.active ? 'Почта подтверждена' : "Почта не подтверждена"}<br/>
+                        </div>
+                        <div className={'card-wrapper abonnement'}>
+                            {abonnementInfo()}
+                        </div>
                     </div>
+
                     <button onClick={async () => {
                         if (message)
                             await store.logout(
@@ -87,9 +119,6 @@ const UserCabinet = () => {
                     (store.user.role === "ADMIN" || store.user.role === "ADMINISTRATOR")
                     && <Link className={'admin-link'} to={"/control-panel"}>В панель управления</Link>
                 }
-                <div className={'card-wrapper abonnement'} style={{margin: "10px 0"}}>
-                    {abonnementInfo()}
-                </div>
                 <div className={'books-container'}>
                     {booksInfo()}
                 </div>

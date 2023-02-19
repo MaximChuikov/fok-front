@@ -112,94 +112,104 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
 
     const [buying, setBuying] = useState(false)
 
+    console.log()
     if (store.isAuth) {
-        if (schedule?.schedule) {
+        if (!store.user.active) {
             return (
-                <ScheduleContext.Provider value={{
-                    cellClick(cell: ScheduleCell) {
-                        const index = schedule.schedule.schedule.indexOf(cell)
-                        if (selectedArr.includes(index)) {
-                            if (selectedArr.length > 0) {
-                                const max = Math.max(...selectedArr)
-                                const min = Math.min(...selectedArr)
-                                if (!(index === min || index === max)) {
-                                    message?.showMessage("Вы можете убрать бронь только с краю.", false)
-                                    return
-                                }
-                            }
-                            setSelectedArr(selectedArr.filter(e => e !== index))
-                        } else {
-                            if (selectedArr.length > 0) {
-                                const max = Math.max(...selectedArr)
-                                const min = Math.min(...selectedArr)
-                                if (!(index === min - 1 || index === max + 1)) {
-                                    message?.showMessage("Вы можете выбрать только несколько часов подряд.", false)
-                                    return
-                                }
-                            }
-                            const aviHours = schedule.pay_info.free_hours + schedule.pay_info.payed_hours
-                            if (selectedArr.length < aviHours) {
-                                setSelectedArr([...selectedArr, index])
-                            } else {
-                                message?.showMessage(`Вам доступно не более ${aviHours} часов для бронирования.`, false)
-                            }
-                        }
-                    },
-                    getScheduleArr(): ScheduleCell[] {
-                        return schedule.schedule.schedule
-                    },
-                    isSelected(cell: ScheduleCell): boolean {
-                        return selectedArr.includes(schedule.schedule.schedule.indexOf(cell))
-                    },
-                    getSelectedCellArr(): ScheduleCell[] {
-                        return schedule.schedule.schedule.filter((e, index) => selectedArr.includes(index))
-                    },
-                    showCurrentPayInfo(): { free_hours: number; payed_hours: number } {
-                        return {free_hours: free, payed_hours: pay}
-                    },
-                    showFuturePayment(): { free_hours: number; payed_hours: number } {
-                        return {
-                            free_hours: schedule.pay_info.free_hours - free,
-                            payed_hours: schedule.pay_info.payed_hours - pay
-                        }
-                    },
-                    allFreeHours(): number {
-                        return schedule.pay_info.free_hours
-                    },
-                    paymentSum(): number {
-                        let nonPay = schedule.pay_info.free_hours
-                        return this?.getSelectedCellArr()
-                            .map(e => e.price).reduce((partialSum, a) => {
-                                if (nonPay > 0) {
-                                    nonPay -= 1
-                                    return partialSum
-                                } else {
-                                    return partialSum + a
-                                }
-                            }, 0) ?? 0
-                    },
-                    changeBuyState() {
-                        setBuying(!buying)
-                    },
-                    showBuyState() {
-                        return buying
-                    }
-                }}>
-                    <div className={'schedule-container'}>
-                        {!buying && ScheduleTitle()}
-                        {!buying && Cells()}
-                        {props.isHaveCart && <Cart/>}
-                    </div>
-                </ScheduleContext.Provider>
-
+                <h1>Пожалуйста, подтвердите вашу почту.</h1>
             )
         }
-        else
-            return (
-                <div className={'schedule-container'}>
-                    <BigSkeleton/>
-                </div>
-            )
+        else {
+            if (schedule?.schedule) {
+                return (
+                    <ScheduleContext.Provider value={{
+                        cellClick(cell: ScheduleCell) {
+                            const index = schedule.schedule.schedule.indexOf(cell)
+                            if (selectedArr.includes(index)) {
+                                if (selectedArr.length > 0) {
+                                    const max = Math.max(...selectedArr)
+                                    const min = Math.min(...selectedArr)
+                                    if (!(index === min || index === max)) {
+                                        message?.showMessage("Вы можете убрать бронь только с краю.", false)
+                                        return
+                                    }
+                                }
+                                setSelectedArr(selectedArr.filter(e => e !== index))
+                            } else {
+                                if (selectedArr.length > 0) {
+                                    const max = Math.max(...selectedArr)
+                                    const min = Math.min(...selectedArr)
+                                    if (!(index === min - 1 || index === max + 1)) {
+                                        message?.showMessage("Вы можете выбрать только несколько часов подряд.", false)
+                                        return
+                                    }
+                                }
+                                const aviHours = schedule.pay_info.free_hours + schedule.pay_info.payed_hours
+                                if (selectedArr.length < aviHours) {
+                                    setSelectedArr([...selectedArr, index])
+                                } else {
+                                    message?.showMessage(`Вам доступно не более ${aviHours} часов для бронирования.`, false)
+                                }
+                            }
+                        },
+                        getScheduleArr(): ScheduleCell[] {
+                            return schedule.schedule.schedule
+                        },
+                        isSelected(cell: ScheduleCell): boolean {
+                            return selectedArr.includes(schedule.schedule.schedule.indexOf(cell))
+                        },
+                        getSelectedCellArr(): ScheduleCell[] {
+                            return schedule.schedule.schedule.filter((e, index) => selectedArr.includes(index))
+                        },
+                        showCurrentPayInfo(): { free_hours: number; payed_hours: number } {
+                            return {free_hours: free, payed_hours: pay}
+                        },
+                        showFuturePayment(): { free_hours: number; payed_hours: number } {
+                            return {
+                                free_hours: schedule.pay_info.free_hours - free,
+                                payed_hours: schedule.pay_info.payed_hours - pay
+                            }
+                        },
+                        allFreeHours(): number {
+                            return schedule.pay_info.free_hours
+                        },
+                        paymentSum(): number {
+                            let nonPay = schedule.pay_info.free_hours
+                            return this?.getSelectedCellArr()
+                                .map(e => e.price).reduce((partialSum, a) => {
+                                    if (nonPay > 0) {
+                                        nonPay -= 1
+                                        return partialSum
+                                    } else {
+                                        return partialSum + a
+                                    }
+                                }, 0) ?? 0
+                        },
+                        changeBuyState() {
+                            setBuying(!buying)
+                        },
+                        showBuyState() {
+                            return buying
+                        }
+                    }}>
+                        <div className={'schedule-container'}>
+                            {!buying && ScheduleTitle()}
+                            {!buying && Cells()}
+                            {props.isHaveCart && <Cart/>}
+                        </div>
+                    </ScheduleContext.Provider>
+
+                )
+            }
+            else
+                return (
+                    <div className={'schedule-container'}>
+                        <BigSkeleton/>
+                    </div>
+                )
+        }
+
+
     } else {
         return (
             <h1>Пожалуйста, авторизуйтесь в личном кабинете</h1>

@@ -18,4 +18,13 @@ export default class ScheduleService {
     static async time_full_info(time_start: string, time_end: string): Promise<AxiosResponse<Book[]>> {
         return await $api.get<Book[]>(API_URL + `time-full-info?time_start=${time_start}&time_end=${time_end}`)
     }
+    static async cancel_book(book_id: number): Promise<AxiosResponse<string>> {
+        return await $api.delete<string>(API_URL + '/book?book_id=' + book_id)
+    }
+    static async admin_cancel_book(book_id: number): Promise<AxiosResponse<string>> {
+        return await $api.delete<string>(API_URL + '/admin-book?book_id=' + book_id)
+    }
+    static async apply_book(book_id: number): Promise<AxiosResponse<string>> {
+        return await $api.post<string>(API_URL + '/apply-book?book_id=' + book_id)
+    }
 }

@@ -28,3 +28,25 @@
     width: 110px;
     height:0;
 }
+
+.book-info {
+    border-radius: 8px;
+    border: 2px black solid;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.payment-expected {
+    color: firebrick;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+
+.paid {
+    color: #1ba27b;
+    font-size: 20px;
+}

@@ -10,7 +10,6 @@ const Cell = (data: {cell: ScheduleCell}) => {
     }
 
     const per = data.cell.info.filled / data.cell.info.capacity * 100 + "%"
-    console.log(per)
     const classnames = [
         schContext?.isSelected(data.cell) && 'selected',
         data.cell.info.isOver && 'over'

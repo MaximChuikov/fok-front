@@ -28,11 +28,13 @@ export default class Store {
 
     async login(email: string, password: string, success: () => void, error: (errorMessage: string) => void) {
         try {
-            const response = await AuthService.login(email, password);
-            localStorage.setItem('token', response.data.accessToken);
-            this.setAuth(true);
-            this.setUser(response.data.user);
-            success()
+            await AuthService.login(email, password).then(r => {
+                localStorage.setItem('token', r.data.accessToken);
+                this.setAuth(true);
+                this.setUser(r.data.user);
+                success()
+            });
+
         } catch (e: any) {
             error(e.response.data.message)
         }
@@ -40,11 +42,12 @@ export default class Store {
 
     async registration(email: string, password: string, success: () => void, error: (errorMessage: string) => void) {
         try {
-            const response = await AuthService.registration(email, password);
-            localStorage.setItem('token', response.data.accessToken);
-            this.setAuth(true);
-            this.setUser(response.data.user);
-            success()
+            await AuthService.registration(email, password).then(r => {
+                localStorage.setItem('token', r.data.accessToken);
+                this.setAuth(true);
+                this.setUser(r.data.user);
+                success()
+            });
         } catch (e: any) {
             error(e.response.data.message)
         }

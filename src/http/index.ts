@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {ResponseTypes} from "../models/response/ResponseTypes";
 
-export const API_URL = `http://localhost:8080/api/`
+//TODO
+export const API_URL = 'http://localhost:8080/api/'//`https://фокбулатова.рф/api/`
 
 const $api = axios.create({
     withCredentials: true,

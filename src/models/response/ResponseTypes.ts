@@ -48,7 +48,8 @@ export type MyBooks = {
     payed_hours: number
     user_id: number
     start_time: string
-    end_time: string
+    end_time: string,
+    status: string
 }[]
 
 export type Book = {

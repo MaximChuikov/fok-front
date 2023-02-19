@@ -6,13 +6,8 @@ import "../../styles/administrator-frame.css"
 const AdministratorFrame = () => {
     return (
         <div>
-            <header className="header">
-                <nav className="nav">
-                    <ul className={'admin-menu'}>
-                        <li><Link className={'header-link'} to={'/control-panel'}>Панель управления</Link></li>
-                    </ul>
-                </nav>
-                <Link className={'logo admin-logo'} to={'/'}>
+            <header className="admin-header">
+                <Link className={'logo'} to={'/'}>
                     <img src={require("../../images/logo.png")} alt={"ФОК"}/>
                 </Link>
             </header>
@@ -20,11 +15,6 @@ const AdministratorFrame = () => {
             <main>
                 <article>
                     <div className={'content-wrapper'}>
-                        <div className={'side-content-panel'}>
-                            <h1>Ссылки</h1>
-                            <h1>Ссылки</h1>
-                            <h1>Ссылки</h1>
-                        </div>
                         <div className={'outlet-div'}>
                             <Outlet/>
                         </div>
