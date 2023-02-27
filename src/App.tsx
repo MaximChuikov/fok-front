@@ -13,7 +13,10 @@ import Contacts from "./pages/Contacts";
 import Events from "./pages/Events";
 import ProtectedRoute from "./pages/AdminPages/ProtectedRoute";
 import AdminOverview from "./pages/AdminPages/AdminOverview";
-import ScheduleMap from "./components/Schedule/ScheduleMap";
+import AdminScheduleMap from "./components/AdminSchedule/AdminScheduleMap";
+import AddAbonnement from "./pages/AdminPages/AddAbonnement";
+import Gym from "./pages/Gym";
+import CreateBook from "./pages/AdminPages/CreateBook";
 
 
 interface Message {
@@ -78,7 +81,7 @@ const App: FC = () => {
                         <Route path={'sport-sections'} element={<SportSections/>}/>
                         <Route path={'contacts'} element={<Contacts/>}/>
                         <Route path={'events'} element={<Events/>}/>
-                        <Route path={'gym'} element={<ScheduleMap isHaveCart={true}/>}/>
+                        <Route path={'gym'} element={<Gym/>}/>
 
                         <Route path={'*'} element={
                             <h1>Ошибка, этой страницы не существует
@@ -90,6 +93,9 @@ const App: FC = () => {
                     </Route>
                     <Route path={'/control-panel'} element={<ProtectedRoute/>}>
                         <Route index element={<AdminOverview/>}/>
+                        <Route path={'create-book'} element={<CreateBook/>}/>
+                        <Route path={'add-abonnement'} element={<AddAbonnement/>}/>
+                        <Route path={'booking'} element={<AdminScheduleMap/>}/>
                     </Route>
                 </Routes>
             </MessageContext.Provider>

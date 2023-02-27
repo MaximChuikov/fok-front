@@ -5,10 +5,10 @@ import {MessageContext} from "../App";
 import useFetch from "../services/useFetch";
 import ScheduleService from "../services/ScheduleService";
 import AbonnementService from "../services/AbonnementService";
-import {AbonnementInfo, Book, MyBooks} from "../models/response/ResponseTypes";
+import {AbonnementInfo, MyBooks} from "../models/response/ResponseTypes";
 import {isEmptyObject} from "jquery";
 import "../styles/user-cabinet.css"
-import {BigSkeleton, SmallSkeleton} from "../components/Skeleton";
+import {SmallSkeleton} from "../components/Skeleton";
 
 const UserCabinet = () => {
     const {store} = useContext(Context)
@@ -50,12 +50,11 @@ const UserCabinet = () => {
             )
         } else
             return "У вас не приобретен абонемент"
-
     }
 
     function booksInfo() {
         if (isLoad)
-            return <BigSkeleton/>
+            return <SmallSkeleton/>
         else if (!isEmptyObject(books)) {
             return (
                 books.map((e, index) =>

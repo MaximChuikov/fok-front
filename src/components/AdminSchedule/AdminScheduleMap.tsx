@@ -6,6 +6,7 @@ import {isEmptyObject} from "jquery";
 import {MessageContext} from "../../App";
 import AdminCell from "./AdminCell";
 import {BigSkeleton} from "../Skeleton";
+import {Link} from "react-router-dom"
 
 interface AdminScheduleCont {
     cellClick(cell: ScheduleCell): void
@@ -91,6 +92,10 @@ const AdminScheduleMap = () => {
 
     )
 
+    function formatter(date: Date) {
+        return `${date.getHours()}:${(date.getMinutes() < 10 && "0"+date.getMinutes())}`
+    }
+
     const CellInfo = () => {
         function payment(status: string, book_id: number) {
             if (status === "PAYMENT_EXPECTED")
@@ -136,10 +141,13 @@ const AdminScheduleMap = () => {
                                     : "Имя клиента: " + e.non_reg_user_name
                             }
                             <br/>
+                            Номер брони: {e.book_id}
+                            <br/>
                             Часы за счет абонемента: {e.free_hours}
                             <br/>
                             Часы за свой счет: {e.payed_hours}
                             <br/>
+                            Забронированно {formatter(new Date(e.start_time))} - {formatter(new Date(e.end_time))}
                             <div>К оплате (без учета скидок): <b>{e.payed_hours * 200} руб.</b></div>
                             {payment(e.status, e.book_id)}
                         </div>
@@ -170,7 +178,17 @@ const AdminScheduleMap = () => {
                 }
             }}>
                 <div className={'schedule-container'}>
-                    <button style={{marginBottom: "6px"}} onClick={async () => await fetch()}>Обновить сетку</button>
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: "6px"
+                    }}>
+                        <Link to={'/control-panel'}>
+                            <button>Вернуться</button>
+                        </Link>
+                        <button onClick={async () => await fetch()}>Обновить сетку</button>
+                    </div>
+
                     {AdminScheduleTitle()}
                     {Cells()}
                     {CellInfo()}

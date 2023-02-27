@@ -35,7 +35,8 @@
 }
 
 .fill-bar {
-    height: 2px;
+    height: 4px;
+    border-radius: 2px;
     width: 80%;
     margin: 5px auto;
     background: linear-gradient(90deg, #131c70 0%, #131c70 var(--percent), #e5e5e5 var(--percent), #e5e5e5 100%);
@@ -43,7 +44,7 @@
 }
 
 .over, .overfilled {
-    background-color: rgba(98, 78, 78, 0.1);
+    background-color: rgba(98, 78, 78, 0.3);
     pointer-events: none;
 }
 .overfilled {
@@ -51,5 +52,5 @@
 }
 
 .admin-over {
-    background-color: rgba(98, 78, 78, 0.1);
+    background-color: rgba(98, 78, 78, 0.3);
 }

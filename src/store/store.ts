@@ -32,11 +32,13 @@ export default class Store {
                 localStorage.setItem('token', r.data.accessToken);
                 this.setAuth(true);
                 this.setUser(r.data.user);
-                success()
+                if (success)
+                    success()
             });
 
         } catch (e: any) {
-            error(e.response.data.message)
+            console.error(e)
+            error(e?.response?.data?.message ?? "Непредвиденная ошибка")
         }
     }
 

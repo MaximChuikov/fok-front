@@ -6,8 +6,8 @@ export default class AbonnementService {
     static async assign_ten_visits(user_id: number) {
         await $api.post(API_URL + 'assign-ten-visits-abonnement?user_id=' + user_id)
     }
-    static async assign_two_months(user_id: number) {
-        await $api.post(API_URL + 'assign-two-months-abonnement?user_id=' + user_id)
+    static async assign_months(user_id: number, months: number) {
+        await $api.post(API_URL + 'assign-two-months-abonnement?user_id=' + user_id + '&months=' + months)
     }
     static async my_abonnement(): Promise<AxiosResponse<AbonnementInfo>> {
         return await $api.get<AbonnementInfo>(API_URL + 'my-abonnement-info')

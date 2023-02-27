@@ -6,6 +6,9 @@ export default class ScheduleService {
     static async get_schedule_table(days_from_today: number): Promise<AxiosResponse<Schedule>> {
         return await $api.get<Schedule>(API_URL + 'show-books?day=' + days_from_today)
     }
+    static async admin_create_book(book_data: BookRegistration) {
+        await $api.post(API_URL + 'admin_book', book_data)
+    }
     static async create_book(book_data: BookRegistration) {
         await $api.post(API_URL + 'book', book_data)
     }

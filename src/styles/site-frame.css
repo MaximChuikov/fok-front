@@ -5,12 +5,22 @@
     position: sticky;
     top: 0;
     width: 100%;
-    height: 70px;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.logos-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: 5px 5px 10px 25px;
+}
+
+.logos-container img {
+    width: 40px;
+    height: 40px;
 }
 
 .admin-header {
@@ -45,6 +55,7 @@
     height: 100%;
     white-space: nowrap;
     font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .menu li .header-link {
@@ -201,6 +212,19 @@
 }
 
 @media (max-width: 768px) {
+    .logos-container {
+        flex-wrap: wrap;
+    }
+    .logos-container img {
+        height: 60px;
+        width: 60px;
+        gap: 10px;
+    }
+
+    .header {
+        justify-content: flex-end;
+    }
+
     .menu {
         width: 100vw;
         font-size: 25px;
@@ -212,7 +236,7 @@
 
     .nav {
         position: fixed;
-        top: 69px;
+        top: 41px;
     }
 
     .side-content-panel {

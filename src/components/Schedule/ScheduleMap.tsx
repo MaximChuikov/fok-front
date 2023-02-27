@@ -33,11 +33,9 @@ interface ScheduleCont {
 
 export const ScheduleContext = createContext<ScheduleCont | null>(null)
 
-
-const ScheduleMap = (props: { isHaveCart: boolean }) => {
+const ScheduleMap = () => {
     const [day, setDay] = useState(0)
     const [schedule, setSchedule] = useState({} as Schedule)
-    const [error, setError] = useState(null)
 
     const message = useContext(MessageContext)
 
@@ -46,27 +44,12 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
             const sch = await ScheduleService.get_schedule_table(day).then(r => r.data)
             setSchedule(sch)
         }
-
         setSelectedArr([])
-        fetch()
-            .then()
-            .catch(e => {
-                if (e?.request?.data?.message ?? false)
-                    setError(e.request.data.message)
-                else
-                    setError(e.message)
-            })
+        fetch().then()
     }, [day])
-
-    function slide(num: number) {
-        setDay(day + num)
-    }
-
 
     const [selectedArr, setSelectedArr] = useState([] as number[])
 
-    const [free, setFree] = useState(0)
-    const [pay, setPay] = useState(0)
     useEffect(() => {
         if (!isEmptyObject(schedule)) {
             const {payed_hours, free_hours} = schedule.pay_info
@@ -84,6 +67,15 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
         }
 
     }, [selectedArr, schedule])
+
+    function slide(num: number) {
+        setDay(day + num)
+    }
+
+
+    const [free, setFree] = useState(0)
+    const [pay, setPay] = useState(0)
+
 
 
     function ScheduleTitle() {
@@ -112,18 +104,19 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
 
     const [buying, setBuying] = useState(false)
 
-    console.log()
     if (store.isAuth) {
         if (!store.user.active) {
             return (
-                <h1>Пожалуйста, подтвердите вашу почту.</h1>
+                <h1>Для того чтобы забронировать зал вам необходимо подтвердить вашу почту. Вам отправлено письмо. После подтверждения станет доступна
+                возможность забронировать зал на удобное вам время.
+                </h1>
             )
         }
         else {
             if (schedule?.schedule) {
                 return (
                     <ScheduleContext.Provider value={{
-                        cellClick(cell: ScheduleCell) {
+                        async cellClick(cell: ScheduleCell) {
                             const index = schedule.schedule.schedule.indexOf(cell)
                             if (selectedArr.includes(index)) {
                                 if (selectedArr.length > 0) {
@@ -195,7 +188,7 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
                         <div className={'schedule-container'}>
                             {!buying && ScheduleTitle()}
                             {!buying && Cells()}
-                            {props.isHaveCart && <Cart/>}
+                            <Cart/>
                         </div>
                     </ScheduleContext.Provider>
 
@@ -208,15 +201,11 @@ const ScheduleMap = (props: { isHaveCart: boolean }) => {
                     </div>
                 )
         }
-
-
     } else {
         return (
-            <h1>Пожалуйста, авторизуйтесь в личном кабинете</h1>
+            <h1>Хотите забронировать зал? Авторизуйтесь в личном кабинете. Затем возвращайтесь на эту страницу.</h1>
         )
     }
-
-
 };
 
 export default ScheduleMap;
