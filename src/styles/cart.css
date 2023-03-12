@@ -22,7 +22,6 @@
 }
 
 .bucket {
-    /*style={{cursor: "pointer", color: "#cc0f68", opacity: "0.6"}}*/
     cursor: pointer;
     fill: var(--nav-bc);
 }
@@ -30,5 +29,6 @@
 .buttons-container {
     margin-top: 30px;
     display: flex;
+    gap: 10px;
     justify-content: space-between;
 }

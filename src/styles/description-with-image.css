@@ -1,76 +1,39 @@
-.card-and-description-container {
+.card__container {
+    display: inline-block;
     margin-top: 40px;
-    display: flex;
-    flex-direction: row;
     width: 100%;
+    background: linear-gradient(104.3deg, #eaeaea 0%, #eeeeee 30%, #ffffff 100%);
+    border-radius: 20px 30px 30px 20px;
 }
-.card-and-description-container[rel=false] {
+.card__container[rel=false] {
     flex-direction: row-reverse;
+    background: linear-gradient(284.3deg, #eaeaea 0%, #eeeeee 30%, #ffffff 100%);
+    border-radius: 30px 20px 20px 30px;
 }
 
-.card-and-description-container div:nth-child(1) {
-    flex-grow: 1;
-    z-index: 1;
+.card__container p {
+    margin: 2px 16px;
 }
 
-.text-in-card {
-    max-width: 60%;
-    min-width: 40%;
-    background: linear-gradient(104.3deg, #C4C4C4 0%, rgba(234, 234, 234, 0) 100%);
-    position: relative;
-    left: -20px;
-    font-size: 25px;
-    font-weight: bolder;
+.card__image {
+    float: left;
+    width: 40%;
+    margin: 0 10px 0 0;
 }
-.text-in-card[rel=false] {
-    background: linear-gradient(284.3deg, #C4C4C4 0%, rgba(234, 234, 234, 0) 100%);
-    left: 20px;
-}
-.text-in-card div {
-    margin: 20px 100px 20px 60px;
-    text-align: left;
-}
-.text-in-card div[rel=false] {
-    margin: 20px 60px 20px 100px;
+.card__image[rel=false] {
+    float: right;
+    margin: 0 0 0 10px;
 }
 
 
 @media (max-width: 1200px) {
-    .card-and-description-container div:nth-child(1) {
-        flex-grow: 0;
-    }
-    .card-and-description-container, .card-and-description-container[rel=false] {
-        flex-direction: column;
-        width: 60%;
-    }
-    .card-and-description-container .text-in-card, .card-and-description-container[rel=false] .text-in-card {
-        max-width: 100%;
+    .card__image, .card__image[rel=false] {
+        margin: 0 0 10px 0;
+        float: top;
         width: 100%;
-    }
-    .card-and-description-container[rel=false] {
-        margin: 0 0 0 auto;
-    }
-    .text-in-card div {
-        font-size: 23px;
-    }
-    .text-in-card, .text-in-card[rel=false] {
-        top: -20px;
-        left: 0;
-    }
-    .text-in-card div, .text-in-card div[rel=false]  {
-        margin: 40px 40px 20px 40px;
     }
 }
 
 @media (max-width: 768px) {
-    .card-and-description-container, .card-and-description-container[rel=false] {
-        width: 100%;
-        margin-top: 20px;
-    }
-    .text-in-card div {
-        font-size: 16px;
-    }
-    .text-in-card div, .text-in-card div[rel=false]  {
-        margin: 30px 20px 10px 20px;
-    }
+
 }

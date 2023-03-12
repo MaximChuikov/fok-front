@@ -1,4 +1,4 @@
-.fok-first-big-card {
+.first-big-card {
     border-radius: 12px;
     width: 100%;
     color: white;
@@ -8,16 +8,16 @@
     height: 100%;
 }
 
-.fok-first-big-card div {
+.fok-name, .description {
     color: white;
     font-size: 24px;
 }
 
-.fok-first-big-card div:nth-last-child(1) {
+.description {
     margin: 0 30% 30px 60px;
 }
 
-.fok-first-big-card div:nth-child(1) {
+.fok-name {
     text-align: right;
     align-self: flex-end;
     margin: 0 40px 40px 0;
@@ -25,54 +25,54 @@
     letter-spacing: 3px;
 }
 @media (max-width: 1350px) {
-    .fok-first-big-card div {
+    .fok-name, .description {
         font-size: 22px;
     }
-    .fok-first-big-card div:nth-last-child(1) {
+    .description {
         margin: 0 20% 25px 40px;
     }
-    .fok-first-big-card div:nth-child(1) {
+    .fok-name {
         margin: 0 30px 30px 0;
     }
 }
 @media (max-width: 1200px) {
-    .fok-first-big-card div {
+    .fok-name, .description {
         font-size: 20px;
     }
-    .fok-first-big-card div:nth-last-child(1) {
+    .description {
         margin: 0 10% 15px 30px;
     }
-    .fok-first-big-card div:nth-child(1) {
+    .fok-name {
         margin: 0 20px 20px 0;
     }
 }
 
 @media (max-width: 1000px) {
-    .fok-first-big-card div {
+    .fok-name, .description {
         font-size: 18px;
     }
 }
 @media (max-width: 900px) {
-    .fok-first-big-card div {
+    .fok-name, .description {
         font-size: 15px;
     }
 }
 @media (max-width: 768px) {
-    .fok-first-big-card div {
+    .fok-name, .description {
         font-size: 19px;
     }
-    .fok-first-big-card div:nth-child(1) {
+    .fok-name {
         margin: 0 20px 10% 0;
     }
-    .fok-first-big-card div:nth-last-child(1) {
+    .description {
         display: none;
     }
 }
 @media (max-width: 635px) {
-    .fok-first-big-card div {
+    .fok-name, .description {
         font-size: 13px;
     }
-    .fok-first-big-card div:nth-child(1) {
+    .fok-name {
         margin: 0 0 10% 20px;
         text-align: left;
         align-self: start;

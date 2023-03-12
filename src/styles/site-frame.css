@@ -103,10 +103,12 @@
 }
 
 .hamburger-line::before {
+    will-change: top;
     top: 6px;
 }
 
 .hamburger-line::after {
+    will-change: top;
     top: -6px;
 }
 
@@ -123,11 +125,13 @@
 }
 
 .side-menu:checked ~ .hamburger .hamburger-line::before {
+    will-change: top, transform;
     transform: rotate(-45deg);
     top: 0;
 }
 
 .side-menu:checked ~ .hamburger .hamburger-line::after {
+    will-change: top, transform;
     transform: rotate(45deg);
     top: 0;
 }

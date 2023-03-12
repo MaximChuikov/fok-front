@@ -22,3 +22,15 @@
 .contact-text {
     font-size: 20px;
 }
+
+.contacts-map {
+    max-width: 600px;
+    margin-right: auto;
+}
+
+@media (min-width: 769px) {
+    .contacts-map {
+        display: none;
+    }
+    
+}

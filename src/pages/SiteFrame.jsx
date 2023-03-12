@@ -60,18 +60,15 @@ const SiteFrame = () => {
             </header>
 
             <main>
-                <article>
-                    <div className={'content-wrapper'}>
-                        <div className={'outlet-div'}>
-                            <Outlet/>
-                        </div>
-                        <div className={'side-content-panel'}>
-                            <EventCalendar/>
-                            <Map/>
-                        </div>
+                <div className={'content-wrapper'}>
+                    <div className={'outlet-div'}>
+                        <Outlet/>
                     </div>
-
-                </article>
+                    <div className={'side-content-panel'}>
+                        <EventCalendar/>
+                        <Map/>
+                    </div>
+                </div>
             </main>
         </div>
     );

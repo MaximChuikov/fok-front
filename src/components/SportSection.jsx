@@ -21,15 +21,13 @@ const SportSection = ({image, description, title, age, trainer, contacts}) => {
                 {
                     contacts &&
                     <div>
-                        <b>Контакты:</b>
+                        <b>Контакты: </b>
                         <div style={{display: "inline-block"}}>{contacts}</div>
                     </div>
                 }
             </div>
-            <div className={'description-and-title-container'}>
-                <h3>{title}</h3>
-                <p>{description}</p>
-            </div>
+            <h3>{title}</h3>
+            <p>{description}</p>
         </div>
     );
 };

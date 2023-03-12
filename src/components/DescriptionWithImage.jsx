@@ -4,15 +4,15 @@ import '../styles/description-with-image.css'
 
 const DescriptionWithImage = ({image, text, isLeft}) => {
     return (
-        <div className={'card-and-description-container'} rel={isLeft.toString()}>
-            <div rel={isLeft.toString()}>
-                <ProportionBackgroundImage image={image}/>
-            </div>
-            <div className={'text-in-card'} rel={isLeft.toString()}>
-                <div rel={isLeft.toString()}>
-                    {text}
+        <div className={'card__container'} rel={isLeft.toString()}>
+            <section>
+                <div className={'card__image'} rel={isLeft.toString()}>
+                    <ProportionBackgroundImage image={image}/>
                 </div>
-            </div>
+                <p>
+                    {text}
+                </p>
+            </section>
         </div>
     );
 };
