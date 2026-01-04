@@ -1,0 +1,80 @@
+/* A4Container.module.css */
+.a4Container {
+    /* Резиновые размеры */
+    width: 80vw;
+    max-width: 600px;
+    aspect-ratio: 210 / 297; /* Соотношение A4 */
+
+    /* Внешний вид */
+    box-shadow: 0 1em 3em black;
+    margin: 0 auto;
+    padding: 35% 18%;
+    box-sizing: border-box;
+    line-height: 1.4;
+    position: relative;
+    flex-shrink: 0; /* Предотвращаем сжатие */
+}
+
+/* Контент внутри A4 */
+.a4Content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.a4Bottom {
+    position: absolute;
+    bottom: 14%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 620px) {
+    .a4Container {
+        width: 95vw;
+        max-width: 95vw;
+        height: calc(95vw * 297 / 210);
+        margin: 0 auto;
+        padding: 30% 15%;
+        min-height: calc(95vw * 297 / 210); /* Гарантируем минимальную высоту */
+    }
+}
+
+/* Для очень маленьких экранов (портретная ориентация) */
+@media (max-width: 480px) {
+    .a4Container {
+        width: 98vw;
+        max-width: 98vw;
+        height: calc(98vw * 297 / 210);
+        padding: 28% 12%;
+        min-height: calc(98vw * 297 / 210); /* Гарантируем минимальную высоту */
+    }
+}
+
+/* Для экранов в альбомной ориентации на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .a4Container {
+        width: 70vw;
+        max-width: 70vw;
+        height: calc(70vw * 297 / 210);
+    }
+}
+
+/* Для больших экранов */
+@media (min-width: 1200px) {
+    .a4Container {
+        max-width: 700px;
+    }
+}
+
+.blueVariant {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+

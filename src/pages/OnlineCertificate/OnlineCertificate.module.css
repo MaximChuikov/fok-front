@@ -1,0 +1,71 @@
+.certificatePage {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.certificateHeader {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.certificateSubheader {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: clamp(14px, 4vw, 18px);
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.certificateWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    min-height: 0; /* Позволяет контенту определять высоту */
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .certificatePage {
+        padding: 15px;
+        padding-bottom: 30px;
+    }
+    
+    .certificateHeader {
+        font-size: clamp(18px, 5vw, 24px);
+        margin-bottom: 8px;
+    }
+    
+    .certificateSubheader {
+        font-size: clamp(12px, 3.5vw, 16px);
+        margin-bottom: 15px;
+    }
+    
+    .buttonsContainer {
+        gap: 6px;
+        margin-bottom: 15px;
+    }
+    
+    .certificateWrapper {
+        margin-bottom: 30px;
+    }
+}
+

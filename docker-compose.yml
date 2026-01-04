@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fok-front
+    ports:
+      - "${PORT:-80}:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - fok-network
+
+networks:
+  fok-network:
+    driver: bridge
+

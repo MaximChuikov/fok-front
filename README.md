@@ -1,70 +1,244 @@
-# Getting Started with Create React App
+# ФОК - Физкультурно-оздоровительный комплекс имени Э.Б. Булатова
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Фронтенд приложение для сайта ФОКа с функционалом онлайн-грамот.
 
-## Available Scripts
+## Технологии
 
-In the project directory, you can run:
+- React 19
+- TypeScript
+- Vite
+- CSS Modules
+- Docker
+- Nginx
 
-### `npm start`
+## Локальная разработка
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Требования
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js 18+
+- npm или yarn
 
-### `npm test`
+### Установка
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Установка зависимостей
+npm install
+# или
+yarn install
+```
 
-### `npm run build`
+### Запуск в режиме разработки
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+# или
+yarn start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Приложение будет доступно по адресу `http://localhost:5173`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Сборка для продакшена
 
-### `npm run eject`
+```bash
+npm run build
+# или
+yarn build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Собранные файлы будут в папке `dist/`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Развертывание на сервере
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Способ 1: Docker (Рекомендуется)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Предварительные требования
 
-## Learn More
+- Docker и Docker Compose установлены на сервере
+- Git установлен на сервере
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Шаги развертывания
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Клонируйте репозиторий на сервер:**
 
-### Code Splitting
+```bash
+git clone <your-repo-url> /path/to/fok-front
+cd /path/to/fok-front
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. **Создайте файл `.env` на основе `.env.example`:**
 
-### Analyzing the Bundle Size
+```bash
+cp .env.example .env
+# Отредактируйте .env файл при необходимости
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. **Соберите и запустите контейнер:**
 
-### Making a Progressive Web App
+```bash
+docker-compose up -d --build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. **Проверьте, что контейнер запущен:**
 
-### Advanced Configuration
+```bash
+docker ps
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Приложение будет доступно на порту, указанном в `.env` (по умолчанию 80).
 
-### Deployment
+#### Обновление приложения
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+# Остановите контейнер
+docker-compose down
 
-### `npm run build` fails to minify
+# Обновите код
+git pull origin main
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Пересоберите и запустите
+docker-compose up -d --build
+```
+
+### Способ 2: Автоматическое развертывание через GitHub Webhook
+
+#### Настройка на сервере
+
+1. **Установите зависимости для webhook сервера:**
+
+```bash
+# Node.js должен быть уже установлен
+```
+
+2. **Настройте переменные окружения для webhook:**
+
+Создайте файл `.env` в корне проекта:
+
+```env
+WEBHOOK_PORT=9000
+GITHUB_WEBHOOK_SECRET=your-very-secret-key-here
+DEPLOY_SCRIPT=./deploy.sh
+```
+
+3. **Обновите путь в `deploy.sh`:**
+
+Откройте `deploy.sh` и измените путь к проекту:
+
+```bash
+cd /path/to/fok-front  # Замените на реальный путь
+```
+
+4. **Сделайте скрипт исполняемым:**
+
+```bash
+chmod +x deploy.sh
+```
+
+5. **Запустите webhook сервер:**
+
+```bash
+# Используя PM2 (рекомендуется)
+npm install -g pm2
+pm2 start webhook-server.js --name webhook
+
+# Или напрямую
+node webhook-server.js
+```
+
+6. **Настройте GitHub Webhook:**
+
+- Перейдите в настройки репозитория на GitHub
+- Выберите "Webhooks" → "Add webhook"
+- Payload URL: `http://your-server-ip:9000/webhook`
+- Content type: `application/json`
+- Secret: значение из `GITHUB_WEBHOOK_SECRET` в `.env`
+- Events: выберите "Just the push event"
+- Active: включено
+
+Теперь при каждом push в ветку `main` приложение будет автоматически обновляться.
+
+#### Настройка PM2 для автозапуска
+
+```bash
+# Сохраните конфигурацию PM2
+pm2 save
+
+# Настройте автозапуск при перезагрузке системы
+pm2 startup
+```
+
+### Способ 3: Ручное развертывание без Docker
+
+1. **Установите зависимости:**
+
+```bash
+npm install
+```
+
+2. **Соберите проект:**
+
+```bash
+npm run build
+```
+
+3. **Настройте Nginx:**
+
+Скопируйте содержимое `dist/` в директорию веб-сервера и настройте Nginx аналогично `nginx.conf`.
+
+## Переменные окружения
+
+Создайте файл `.env` в корне проекта:
+
+```env
+# Порт для приложения (для Docker)
+PORT=80
+
+# Порт для webhook сервера
+WEBHOOK_PORT=9000
+
+# Секретный ключ для GitHub webhook
+GITHUB_WEBHOOK_SECRET=your-secret-key-here
+
+# Путь к скрипту развертывания
+DEPLOY_SCRIPT=./deploy.sh
+
+# Окружение
+NODE_ENV=production
+```
+
+**Важно:** Никогда не коммитьте файл `.env` в репозиторий! Он уже добавлен в `.gitignore`.
+
+## Структура проекта
+
+```
+fok-front/
+├── src/                    # Исходный код
+│   ├── components/        # React компоненты
+│   ├── pages/             # Страницы приложения
+│   ├── OnlineCertificate/ # Модуль онлайн-грамот
+│   ├── images/            # Изображения
+│   └── styles/            # Стили
+├── public/                 # Публичные файлы
+├── Dockerfile              # Конфигурация Docker
+├── docker-compose.yml      # Docker Compose конфигурация
+├── nginx.conf             # Конфигурация Nginx
+├── webhook-server.js      # Сервер для GitHub webhooks
+├── deploy.sh              # Скрипт автоматического развертывания
+└── .env.example           # Пример файла с переменными окружения
+```
+
+## Онлайн-грамоты
+
+Приложение поддерживает отображение онлайн-грамот через специальные зашифрованные URL. Грамоты автоматически масштабируются и сохраняют пропорции на всех устройствах.
+
+## Поддержка
+
+При возникновении проблем:
+
+1. Проверьте логи Docker контейнера: `docker-compose logs`
+2. Проверьте логи webhook сервера (если используется PM2): `pm2 logs webhook`
+3. Убедитесь, что все переменные окружения настроены правильно
+4. Проверьте, что порты не заняты другими приложениями
+
+## Лицензия
+
+Приватный проект.
