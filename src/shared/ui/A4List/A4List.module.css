@@ -2,7 +2,7 @@
 .a4Container {
     /* Резиновые размеры */
     width: 80vw;
-    max-width: 600px;
+    max-width: 500px;
     aspect-ratio: 210 / 297; /* Соотношение A4 */
 
     /* Внешний вид */
@@ -62,13 +62,6 @@
         width: 70vw;
         max-width: 70vw;
         height: calc(70vw * 297 / 210);
-    }
-}
-
-/* Для больших экранов */
-@media (min-width: 1200px) {
-    .a4Container {
-        max-width: 700px;
     }
 }
 

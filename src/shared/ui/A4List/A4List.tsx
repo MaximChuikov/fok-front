@@ -1,14 +1,16 @@
 import React, {ReactNode, useEffect, useRef, useState} from 'react';
 import styles from './A4List.module.css';
 import ResizableText from '../ResizableText/ResizableText';
-import blueBackground from '../../assets/images/images/blue-background.jpg';
 
 interface A4ListProps {
     children: ReactNode;
+    backgroundImage: string;
+    listStyles?: React.CSSProperties;
     date?: string;
+    dateStyles?: React.CSSProperties;
 }
 
-export const A4List: React.FC<A4ListProps> = ({children, date}) => {
+export const A4List: React.FC<A4ListProps> = ({children, date, listStyles, dateStyles, backgroundImage}) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [fontSize, setFontSize] = useState<string>('1px');
 
@@ -43,7 +45,8 @@ export const A4List: React.FC<A4ListProps> = ({children, date}) => {
             className={`${styles.a4Container} ${styles.blueVariant}`}
             style={{
                 fontSize: fontSize,
-                backgroundImage: `url(${blueBackground})`
+                backgroundImage: `url(${backgroundImage})`,
+                ...listStyles
             }}
         >
             <div className={styles.a4Content}>
@@ -51,8 +54,8 @@ export const A4List: React.FC<A4ListProps> = ({children, date}) => {
             </div>
             {
                 date ? (
-                    <div className={styles.a4Bottom}>
-                        <ResizableText>
+                    <div className={styles.a4Bottom} style={dateStyles}>
+                        <ResizableText textStyles={dateStyles}>
                             <b>{date}</b>
                         </ResizableText>
                     </div>

@@ -4,9 +4,10 @@ import styles from './ResizableText.module.css';
 interface ResizableTextProps {
     children: ReactNode;
     tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'span';
+    textStyles?: React.CSSProperties;
 }
 
-const ResizableText: React.FC<ResizableTextProps> = ({children, tag = 'p'}) => {
+const ResizableText: React.FC<ResizableTextProps> = ({children, tag = 'p', textStyles}) => {
     const tagClassMap: Record<string, string> = {
         'h1': styles.textH1,
         'h2': styles.textH2,
@@ -20,7 +21,7 @@ const ResizableText: React.FC<ResizableTextProps> = ({children, tag = 'p'}) => {
     };
 
     return (
-        <div className={`${styles.textElement} ${tagClassMap[tag] || styles.textP}`}>
+        <div className={`${styles.textElement} ${tagClassMap[tag] || styles.textP}`} style={textStyles}>
             {children}
         </div>
     );

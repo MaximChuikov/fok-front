@@ -34,8 +34,8 @@ const CertificateDebug: React.FC = () => {
             return;
         }
 
-        if (!formData.fio || !formData.msg) {
-            setError('Заполните все обязательные поля (ФИО и Сообщение)');
+        if (!formData.fio) {
+            setError('Заполните все обязательные поля (ФИО)');
             return;
         }
 
@@ -70,7 +70,7 @@ const CertificateDebug: React.FC = () => {
 
     // Рендерим грамоту сразу на основе данных формы, без необходимости хеша
     const certificatePreview = useMemo(() => {
-        if (!formData.fio || !formData.msg) return null;
+        if (!formData.fio) return null;
         return getPattern(formData);
     }, [formData]);
 
@@ -79,12 +79,14 @@ const CertificateDebug: React.FC = () => {
             <h1>Отладочная страница для создания грамот</h1>
 
             <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
+                display: 'flex',
                 gap: '20px',
-                marginBottom: '20px'
+                marginBottom: '20px',
+                justifyContent: 'space-between',
+                width: '100%',
+                flexWrap: 'wrap',
             }}>
-                <div>
+                <div style={{ flex: 1 }}>
                     <h2>Поля для заполнения</h2>
 
                     <div style={{ marginBottom: '15px' }}>
@@ -114,14 +116,14 @@ const CertificateDebug: React.FC = () => {
 
                     <div style={{ marginBottom: '15px' }}>
                         <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
-                            Сообщение (обязательно):
+                            Сообщение:
                         </label>
                         <textarea
                             value={formData.msg || ''}
                             onChange={(e) => handleInputChange('msg', e.target.value)}
-                            placeholder="Введите сообщение для грамоты"
+                            placeholder="Введите сообщение для грамоты (необязательно)"
                             rows={4}
-                            style={{ width: '100%', padding: '8px', fontSize: '14px', resize: 'vertical' }}
+                            style={{ width: '100%', padding: '8px', fontSize: '14px', resize: 'vertical', whiteSpace: 'pre-wrap' }}
                         />
                     </div>
 
@@ -196,7 +198,7 @@ const CertificateDebug: React.FC = () => {
                     )}
                 </div>
 
-                <div>
+                <div style={{ flex: 1 }}>
                     <h2>Результат</h2>
 
                     <div style={{ marginBottom: '15px' }}>
