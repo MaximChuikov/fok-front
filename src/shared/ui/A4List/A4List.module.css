@@ -36,23 +36,23 @@
 /* Для очень маленьких экранов */
 @media (max-width: 620px) {
     .a4Container {
-        width: 95vw;
-        max-width: 95vw;
-        height: calc(95vw * 297 / 210);
+        width: 85vw;
+        max-width: 85vw;
+        height: calc(85vw * 297 / 210);
         margin: 0 auto;
         padding: 30% 15%;
-        min-height: calc(95vw * 297 / 210); /* Гарантируем минимальную высоту */
+        min-height: calc(85vw * 297 / 210); /* Гарантируем минимальную высоту */
     }
 }
 
 /* Для очень маленьких экранов (портретная ориентация) */
 @media (max-width: 480px) {
     .a4Container {
-        width: 98vw;
-        max-width: 98vw;
-        height: calc(98vw * 297 / 210);
+        width: 85vw;
+        max-width: 85vw;
+        height: calc(85vw * 297 / 210);
         padding: 28% 12%;
-        min-height: calc(98vw * 297 / 210); /* Гарантируем минимальную высоту */
+        min-height: calc(85vw * 297 / 210); /* Гарантируем минимальную высоту */
     }
 }
 
