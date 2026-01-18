@@ -57,7 +57,6 @@ const CertificateDebug: React.FC = () => {
 
         try {
             await navigator.clipboard.writeText(encryptedHash);
-            alert('Хеш скопирован в буфер обмена!');
         } catch (err) {
             setError('Не удалось скопировать в буфер обмена');
         }
@@ -258,7 +257,6 @@ const CertificateDebug: React.FC = () => {
                             <button
                                 onClick={() => {
                                     navigator.clipboard.writeText(previewUrl);
-                                    alert('URL скопирован!');
                                 }}
                                 style={{
                                     marginTop: '10px',
