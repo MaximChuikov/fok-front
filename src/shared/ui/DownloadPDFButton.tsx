@@ -1,7 +1,7 @@
 import React, { RefObject, FC} from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import './DownloadPDFButton.css'
+import styles from './DownloadPDFButton.module.css'
 
 interface DownloadPDFButtonProps {
     contentRef: RefObject<any>;
@@ -57,7 +57,7 @@ export const DownloadPDFButton: FC<DownloadPDFButtonProps> = ({contentRef, fileN
     return (
         <button
             onClick={downloadPDF}
-            className="download-btn"
+            className={styles.downloadBtn}
         >
             📄 Скачать PDF
         </button>

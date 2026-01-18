@@ -1,4 +1,4 @@
-.download-btn {
+.shareBtn {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
@@ -9,11 +9,18 @@
     transition: background-color 0.3s;
 }
 
-.download-btn:hover {
+.shareBtn:hover {
     background-color: #0056b3;
 }
 
-.download-btn:active {
+.shareBtn:active {
     background-color: #004085;
+}
+
+@media (max-width: 768px) {
+    .shareBtn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }
 

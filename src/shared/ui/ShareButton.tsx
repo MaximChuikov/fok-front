@@ -1,5 +1,5 @@
 import React from 'react';
-import './ShareButton.css';
+import styles from './ShareButton.module.css'
 
 export const ShareButton: React.FC = () => {
     async function copyLink() {
@@ -10,7 +10,7 @@ export const ShareButton: React.FC = () => {
     return (
         <button
             onClick={copyLink}
-            className="download-btn"
+            className={styles.shareBtn}
         >
             ➦ Поделиться
         </button>
