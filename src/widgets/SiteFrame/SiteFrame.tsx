@@ -1,5 +1,5 @@
 import React from 'react';
-import {Outlet, Link} from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "../../shared/styles/site-frame.css";
 import Map from "../../shared/ui/Map";
 import boxImg from '../../shared/assets/images/images/square-figures/box.png';
@@ -31,14 +31,14 @@ const SiteFrame: React.FC = () => {
     return (
         <div>
             <header className="header">
-                <input className={'side-menu'} type="checkbox" id="side-menu"/>
-                <label className={'hamburger'} htmlFor="side-menu"><span className="hamburger-line"/></label>
+                <input className={'side-menu'} type="checkbox" id="side-menu" />
+                <label className={'hamburger'} htmlFor="side-menu"><span className="hamburger-line" /></label>
 
                 <nav className="nav">
                     <div className={'logos-container'}>
                         {
                             photoArr.map((e, ind) => (
-                                <img src={e} key={ind} alt={'*'}/>
+                                <img src={e} key={ind} alt={'*'} />
                             ))
                         }
                     </div>
@@ -49,6 +49,7 @@ const SiteFrame: React.FC = () => {
                         <li><Link className={'header-link'} to={'/gym'} onClick={hideMenu}>Тренажерный зал</Link>
                         </li>
                         <li><Link className={'header-link'} to={'/contacts'} onClick={hideMenu}>Контакты</Link></li>
+                        <li><Link className={'header-link'} to={'/documents'} onClick={hideMenu}>Документы</Link></li>
                     </ul>
                 </nav>
             </header>
@@ -56,10 +57,10 @@ const SiteFrame: React.FC = () => {
             <main>
                 <div className={'content-wrapper'}>
                     <div className={'outlet-div'}>
-                        <Outlet/>
+                        <Outlet />
                     </div>
                     <div className={'side-content-panel'}>
-                        <Map/>
+                        <Map />
                     </div>
                 </div>
             </main>

@@ -9,6 +9,7 @@ import Contacts from "~/pages/Contacts";
 import Gym from "~/pages/Gym";
 import CertificateDebug from "~/pages/CertificateDebug";
 import OnlineCertificate from "~/pages/OnlineCertificate";
+import Documents from "~/pages/Documents";
 
 const App: FC = () => {
     const location = useLocation();
@@ -21,6 +22,7 @@ const App: FC = () => {
                 <Route path={'contacts'} element={<Contacts/>}/>
                 <Route path={'gym'} element={<Gym/>}/>
                 <Route path={'certificate'} element={<OnlineCertificate/>}/>
+                <Route path={'documents'} element={<Documents/>}/>
                 <Route path={'certificate-debug'} element={<CertificateDebug/>}/>
 
                 <Route path={'*'} element={
