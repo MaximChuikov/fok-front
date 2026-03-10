@@ -12,6 +12,7 @@ export type DocumentItem = {
  * - Чтобы заменить файл — положите новый PDF в `public/fok-documents/` и обновите `fileName`
  */
 export const DOCUMENTS: DocumentItem[] = [
+  { fileName: "постановление.pdf", title: "Стоимость услуг" },
   { fileName: "ЕГРН.pdf", title: "ЕГРН" },
   { fileName: "ОГРН.pdf", title: "ОГРН" },
   { fileName: "устав фок.pdf", title: "Устав ФОК" },
